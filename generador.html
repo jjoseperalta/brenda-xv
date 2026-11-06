@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17121b">
+  <title>Generador de invitaciones | XV Brenda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; padding:28px 16px; display:grid; place-items:center; background:#17121b; color:#f8f3ed; font-family:Montserrat,sans-serif; }
+    .panel { width:min(100%,540px); padding:30px; border:1px solid #b8860b; border-radius:14px; background:#211a25; box-shadow:0 18px 60px #0006; }
+    h1 { margin:0; text-align:center; color:#e4c27b; font:600 2.5rem 'Cormorant Garamond',serif; }
+    .intro { text-align:center; color:#c9bdc9; font-size:.85rem; line-height:1.7; }
+    label { display:block; margin:20px 0 8px; font-size:.78rem; letter-spacing:1px; }
+    input { width:100%; padding:13px 14px; border-radius:7px; border:1px solid #756777; background:#17121b; color:white; font:inherit; outline:none; }
+    input:focus { border-color:#d6b77a; }
+    button { width:100%; margin-top:22px; padding:14px; border:0; border-radius:6px; background:#966f33; color:white; font-weight:600; letter-spacing:1px; cursor:pointer; }
+    button:hover { background:#735221; }
+    .result { display:none; margin-top:24px; padding:16px; border:1px solid #756777; border-radius:8px; }
+    .result.show { display:block; }
+    .success { color:#b9d9ad; font-size:.8rem; }
+    .link { display:block; overflow-wrap:anywhere; margin:12px 0; color:#e4c27b; font-size:.82rem; line-height:1.6; }
+    .copy { margin-top:8px; background:#3b704d; }
+    .copy:hover { background:#2c593c; }
+    .hint { margin-top:18px; color:#aa9eae; font-size:.72rem; line-height:1.6; }
+    .error { min-height:18px; color:#ffb4ab; font-size:.78rem; }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <h1>Generador de invitaciones</h1>
+    <p class="intro">XV años de Brenda · 27 de noviembre de 2026</p>
+    <form id="formulario">
+      <label for="nombre">NOMBRE DEL INVITADO</label>
+      <input id="nombre" type="text" maxlength="80" placeholder="Ej. Pepito Pérez" autocomplete="off" required>
+      <label for="pases">CANTIDAD DE PASES</label>
+      <input id="pases" type="number" min="1" max="20" value="2" required>
+      <label for="urlBase">DIRECCIÓN DE TU INVITACIÓN EN GITHUB PAGES</label>
+      <input id="urlBase" type="url" placeholder="https://usuario.github.io/repositorio/" required>
+      <p class="error" id="error" role="alert"></p>
+      <button type="submit">GENERAR INVITACIÓN</button>
+    </form>
+    <section class="result" id="resultado" aria-live="polite">
+      <p class="success">✓ Enlace generado correctamente</p>
+      <a class="link" id="enlace" href="#" target="_blank" rel="noopener"></a>
+      <button class="copy" id="copiar" type="button">COPIAR ENLACE</button>
+      <p class="hint" id="estadoCopia"></p>
+    </section>
+    <p class="hint">Puedes abrir este generador directamente desde tu computadora. No es necesario publicarlo en GitHub Pages. Si lo abres desde tu sitio, la dirección base se completará automáticamente.<br><br>Base64 solamente oculta los datos a simple vista; no evita que alguien los decodifique y modifique.</p>
+  </main>
+  <script>
+    const formulario = document.getElementById('formulario');
+    const campoNombre = document.getElementById('nombre');
+    const campoPases = document.getElementById('pases');
+    const campoUrl = document.getElementById('urlBase');
+    const resultado = document.getElementById('resultado');
+    const enlace = document.getElementById('enlace');
+    const error = document.getElementById('error');
+    const estadoCopia = document.getElementById('estadoCopia');
+
+    if (location.protocol === 'http:' || location.protocol === 'https:') {
+      campoUrl.value = new URL('./', location.href).href;
+    }
+
+    function codificarBase64Url(objeto) {
+      const bytes = new TextEncoder().encode(JSON.stringify(objeto));
+      let binario = '';
+      bytes.forEach(byte => binario += String.fromCharCode(byte));
+      return btoa(binario).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+    }
+
+    formulario.addEventListener('submit', function(evento) {
+      evento.preventDefault();
+      error.textContent = '';
+      estadoCopia.textContent = '';
+      const nombre = campoNombre.value.trim();
+      const pases = Number(campoPases.value);
+      let base;
+      if (!nombre) { error.textContent = 'Escribe el nombre del invitado.'; return; }
+      if (!Number.isInteger(pases) || pases < 1 || pases > 20) {
+        error.textContent = 'La cantidad de pases debe estar entre 1 y 20.'; return;
+      }
+      try {
+        base = new URL(campoUrl.value.trim());
+        if (!['https:', 'http:'].includes(base.protocol)) throw new Error('URL no válida');
+      } catch {
+        error.textContent = 'Escribe una dirección válida de GitHub Pages.'; return;
+      }
+      if (base.pathname.endsWith('/index.html')) {
+        base.pathname = base.pathname.slice(0, -'index.html'.length);
+      } else if (!base.pathname.endsWith('/')) {
+        base.pathname += '/';
+      }
+      const codigo = codificarBase64Url({n:nombre, p:pases});
+      const urlInvitacion = new URL('index.html', base);
+      urlInvitacion.searchParams.set('i', codigo);
+      enlace.href = urlInvitacion.href;
+      enlace.textContent = urlInvitacion.href;
+      resultado.classList.add('show');
+    });
+
+    document.getElementById('copiar').addEventListener('click', async function() {
+      try {
+        await navigator.clipboard.writeText(enlace.href);
+        estadoCopia.textContent = 'Enlace copiado. Ya puedes enviarlo por WhatsApp.';
+      } catch {
+        estadoCopia.textContent = 'No se pudo copiar automáticamente. Selecciona y copia el enlace.';
+      }
+    });
+  </script>
+</body>
+</html>

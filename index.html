@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#17121b">
+
+    <title>Mis XV Años | Invitación Especial</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* Dorado más intenso y visible sobre tonos claros */
+            --gold: #b8860b;
+            --dark: #17121b;
+            --cream: #f8f3ed;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: #2b1e1d;
+        }
+
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .script {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .gold {
+            color: var(--gold);
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+        }
+
+        .gold-line {
+            width: 65px;
+            height: 2px;
+            background: var(--gold);
+            margin: 18px auto;
+        }
+
+        /* 1. PORTADA - Tono oscuro superior sobre portada.png */
+        .hero {
+            min-height: 100svh;
+            background:
+                linear-gradient(rgba(23, 18, 27, 0.65),
+                    rgba(23, 18, 27, 0.75)),
+                url('images/portada-1.png');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .hero-content {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        /* 2. SECCIONES VINTAGE */
+        .vintage-bg {
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-attachment: scroll !important;
+        }
+
+        /* Fondo 1: Pergamino (fondo-1.png) */
+        .bg-pergamino {
+            background-image:
+                linear-gradient(rgba(255, 248, 235, 0.75),
+                    rgba(255, 248, 235, 0.75)),
+                url('images/fondo-1.png') !important;
+            color: #2b1a18;
+        }
+
+        .bg-pergamino .section-title,
+        .bg-pergamino h2,
+        .bg-pergamino h3,
+        .bg-pergamino p,
+        .bg-pergamino span {
+            color: #2b1a18 !important;
+        }
+
+        .bg-pergamino .text-gray-300,
+        .bg-pergamino .text-gray-400,
+        .bg-pergamino .text-gray-500,
+        .bg-pergamino .text-gray-600 {
+            color: #4a322d !important;
+        }
+
+        /* Fondo 2: Rosa (fondo-2.png) */
+        .bg-rosa {
+            background-image:
+                linear-gradient(rgba(255, 244, 245, 0.75),
+                    rgba(255, 244, 245, 0.75)),
+                url('images/fondo-2.png') !important;
+            color: #381a24;
+        }
+
+        .bg-rosa .section-title,
+        .bg-rosa h2,
+        .bg-rosa h3,
+        .bg-rosa p,
+        .bg-rosa span {
+            color: #381a24 !important;
+        }
+
+        .bg-rosa .text-gray-300,
+        .bg-rosa .text-gray-400,
+        .bg-rosa .text-gray-500,
+        .bg-rosa .text-gray-600 {
+            color: #592e3d !important;
+        }
+
+        /* Fondo 3: Medieval Oscuro (fondo-3.png) */
+        .bg-medieval {
+            background-image:
+                linear-gradient(rgba(35, 20, 35, 0.75),
+                    rgba(35, 20, 35, 0.75)),
+                url('images/fondo-3.png') !important;
+            color: #ffffff;
+        }
+
+        .bg-medieval .section-title,
+        .bg-medieval h2,
+        .bg-medieval h3,
+        .bg-medieval p,
+        .bg-medieval span {
+            color: #ffffff !important;
+        }
+
+        .bg-medieval .text-gray-300,
+        .bg-medieval .text-gray-400,
+        .bg-medieval .text-gray-500,
+        .bg-medieval .text-gray-600 {
+            color: #e2d7e5 !important;
+        }
+
+        /* Ajuste de clases con color dorado expreso */
+        .bg-pergamino .script.gold,
+        .bg-rosa .script.gold,
+        .bg-medieval .script.gold {
+            color: var(--gold) !important;
+        }
+
+        /* SECCIONES Y CONTENIDOS */
+        .section-padding {
+            padding: 85px 22px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 3.8rem);
+            font-weight: 700;
+        }
+
+        /* CONTADOR */
+        .count-box {
+            background: rgba(23, 18, 27, 0.65);
+            border: 1px solid rgba(214, 183, 122, 0.75);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            padding: 18px 8px;
+            min-width: 65px;
+        }
+
+        .count-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            line-height: 1;
+            color: #f3d79b;
+        }
+
+        /* TARJETAS */
+        .info-card {
+            background: transparent;
+            border: none;
+            padding: 16px 24px;
+            box-shadow: none;
+            grid-column: 1 / -1;
+            /* Permite que ocupe todo el ancho disponible si es necesario */
+            max-width: 500px;
+            margin: 0 auto;
+            /* Centra la tarjeta horizontalmente */
+            text-align: center;
+            /* Asegura que los textos hijos estén centrados */
+        }
+
+        .gold-button {
+            display: inline-block;
+            background: #966f33;
+            color: #ffffff !important;
+            padding: 13px 26px;
+            border-radius: 3px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .gold-button:hover {
+            background: #735221;
+            transform: translateY(-2px);
+        }
+
+        /* ITINERARIO */
+        .timeline {
+            position: relative;
+            max-width: 550px;
+            margin: auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            left: 18px;
+            width: 2px;
+            background: var(--gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 55px;
+            padding-bottom: 35px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 10px;
+            top: 4px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 3px solid #966f33;
+        }
+
+        /* QR */
+        .qr-frame {
+            display: inline-block;
+            background: white;
+            padding: 15px;
+            border: 1px solid #cbb89d;
+        }
+
+        /* ANIMACIONES */
+        .fade-up {
+            animation: fadeUp 1.2s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================
+       1. PORTADA
+  ====================================== -->
+
+    <section class="hero flex items-center justify-center text-center text-white px-5">
+
+        <div class="hero-content fade-up max-w-3xl">
+
+            <p class="uppercase tracking-[5px] text-xs md:text-sm mb-8">
+                Una noche mágica para recordar
+            </p>
+
+            <p class="script text-5xl md:text-7xl gold mb-3">
+                Mis XV Años
+            </p>
+
+            <h1 class="serif text-6xl md:text-8xl font-medium mb-5">
+                BRENDA
+            </h1>
+
+            <div class="gold-line"></div>
+
+            <p class="tracking-[4px] text-sm md:text-base">
+                27 · NOV · 2026
+            </p>
+
+            <a href="#bienvenida"
+                class="inline-block mt-12 border border-[#d6b77a] px-8 py-3 text-xs tracking-[3px] hover:bg-[#d6b77a] hover:text-black transition">
+                DESCUBRE MI INVITACIÓN
+            </a>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================
+       2. FRASE INICIAL
+  ====================================== -->
+
+    <section class="section-padding text-center vintage-bg bg-pergamino">
+
+        <p class="script text-4xl gold">Un momento especial...</p>
+
+        <h2 class="section-title mt-3">
+            Una noche para soñar
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <p class="max-w-2xl mx-auto text-gray-600 leading-8 text-sm md:text-base">
+            Hay momentos en la vida que se convierten en recuerdos
+            para siempre. Hoy comienza una nueva etapa llena de
+            sueños, ilusiones y nuevas aventuras.
+            <br><br>
+            Quiero compartir contigo la alegría de celebrar mis
+            quince años. ¡Tu presencia hará que esta noche sea aún
+            más especial!
+        </p>
+
+    </section>
+
+
+    <!-- =====================================
+       3. BIENVENIDA Y PASES
+  ====================================== -->
+
+    <section id="bienvenida" class="section-padding text-center text-white vintage-bg bg-rosa">
+
+        <p class="script text-4xl gold">Con mucho cariño</p>
+
+        <h2 id="guestName" class="serif text-4xl md:text-5xl mt-5">
+            ¡Hola Familia y Amigos!
+        </h2>
+
+        <p class="text-gray-300 text-sm mt-5 max-w-xl mx-auto leading-7">
+            Será un honor contar con tu presencia en una noche
+            tan importante para mí.
+        </p>
+
+        <div id="passesBox" class="hidden mt-8 inline-block border border-[#d6b77a] px-8 py-5 rounded">
+
+            <p class="text-xs uppercase tracking-[3px] gold mb-2">
+                Invitación especial
+            </p>
+
+            <p class="serif text-3xl">
+                Tienes asignados:
+            </p>
+
+            <p id="passesNumber" class="text-4xl gold font-semibold mt-2">
+                0 pases
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+       4. CUENTA REGRESIVA
+  ====================================== -->
+
+    <section class="section-padding text-center text-white vintage-bg bg-medieval">
+
+        <p class="script text-4xl gold">La espera termina pronto</p>
+
+        <h2 class="section-title text-white mt-3">
+            Cuenta regresiva
+        </h2>
+
+        <p class="text-gray-400 text-xs tracking-[2px] mt-4 mb-10">
+            FALTAN PARA UNA NOCHE INOLVIDABLE
+        </p>
+
+        <div class="flex justify-center gap-3 md:gap-6 max-w-xl mx-auto">
+
+            <div class="count-box flex-1">
+                <div id="days" class="count-number">00</div>
+                <p class="text-[9px] md:text-xs tracking-widest mt-3">DÍAS</p>
+            </div>
+
+            <div class="count-box flex-1">
+                <div id="hours" class="count-number">00</div>
+                <p class="text-[9px] md:text-xs tracking-widest mt-3">HORAS</p>
+            </div>
+
+            <div class="count-box flex-1">
+                <div id="minutes" class="count-number">00</div>
+                <p class="text-[9px] md:text-xs tracking-widest mt-3">MINUTOS</p>
+            </div>
+
+            <div class="count-box flex-1">
+                <div id="seconds" class="count-number">00</div>
+                <p class="text-[9px] md:text-xs tracking-widest mt-3">SEGUNDOS</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+       5. LUGAR Y HORA
+  ====================================== -->
+
+    <section class="section-padding text-center vintage-bg bg-pergamino">
+
+        <p class="script text-4xl gold">Nos encontramos en</p>
+
+        <h2 class="section-title mt-3">
+            Lugar y hora
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-12">
+
+            <!-- Recepción -->
+            <div class="info-card">
+
+                <h3 class="serif text-3xl">Recepción</h3>
+
+                <div class="gold-line"></div>
+
+                <p class="text-xs uppercase tracking-widest text-gray-500">
+                    Salón de eventos
+                </p>
+
+                <p class="serif text-2xl mt-3">
+                    NOTREDAME
+                </p>
+
+                <p class="text-sm text-gray-500 mt-3 leading-6">
+                    Av. D’Orbigny esq. Cobija
+                </p>
+
+                <p class="text-sm mt-4 font-semibold">
+                    HORA: 17:30 HRS.
+                </p>
+
+                <a href="LINK_DE_GOOGLE_MAPS_RECEPCION" target="_blank" rel="noopener noreferrer"
+                    class="gold-button mt-7">
+                    Ver ubicación
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+       6. ITINERARIO
+  ====================================== -->
+
+    <section class="section-padding vintage-bg bg-rosa">
+
+        <div class="text-center mb-14">
+
+            <p class="script text-4xl gold">Una noche especial</p>
+
+            <h2 class="section-title mt-3">
+                Itinerario
+            </h2>
+
+            <div class="gold-line"></div>
+
+            <p class="text-gray-500 text-sm">
+                Cada instante tendrá algo especial.
+            </p>
+
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <p class="text-xs gold tracking-widest font-semibold">
+                    17:30 HRS.
+                </p>
+
+                <h3 class="serif text-2xl mt-1">Recepción</h3>
+
+                <p class="text-sm text-gray-500 mt-2">
+                    Bienvenida y encuentro con nuestros invitados.
+                </p>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <p class="text-xs gold tracking-widest font-semibold">
+                    20:00 HRS.
+                </p>
+
+                <h3 class="serif text-2xl mt-1">Acto central</h3>
+
+                <p class="text-sm text-gray-500 mt-2">
+                    Un momento lleno de emoción y significado.
+                </p>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <p class="text-xs gold tracking-widest font-semibold">
+                    21:00 HRS.
+                </p>
+
+                <h3 class="serif text-2xl mt-1">Número sorpresa</h3>
+
+                <p class="text-sm text-gray-500 mt-2">
+                    ¡Una sorpresa preparada especialmente para ti!
+                </p>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <p class="text-xs gold tracking-widest font-semibold">
+                    22:00 HRS.
+                </p>
+
+                <h3 class="serif text-2xl mt-1">¡Que comience la fiesta!</h3>
+
+                <p class="text-sm text-gray-500 mt-2">
+                    Música, alegría y momentos inolvidables.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+       7. CÓDIGO DE VESTIMENTA
+  ====================================== -->
+
+    <section class="section-padding text-center vintage-bg bg-medieval">
+
+        <p class="script text-4xl gold">Para esta ocasión</p>
+
+        <h2 class="section-title mt-3">
+            Código de vestimenta
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <!-- <div class="mt-8 text-5xl">👗</div> -->
+
+        <h3 class="serif text-3xl mt-5">
+            Formal / Etiqueta
+        </h3>
+
+        <p class="text-sm text-gray-500 mt-4 max-w-md mx-auto leading-7">
+            Queremos que luzcas espectacular.
+            Te invitamos a vestir elegante para compartir
+            juntos esta noche especial.
+        </p>
+
+        <div class="mt-9">
+
+            <p class="text-xs tracking-[3px] uppercase mb-5">
+                Colores sugeridos
+            </p>
+
+            <div class="flex justify-center gap-4">
+
+                <div class="text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#17121b] mx-auto"></div>
+                    <p class="text-[10px] mt-2">Negro</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#b9a18b] mx-auto"></div>
+                    <p class="text-[10px] mt-2">Beige</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#7e657b] mx-auto"></div>
+                    <p class="text-[10px] mt-2">Malva</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#d6b77a] mx-auto"></div>
+                    <p class="text-[10px] mt-2">Dorado</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- <p class="mt-10 text-sm italic text-gray-500">
+            El color reservado para la quinceañera será:
+        </p>
+
+        <p class="script text-4xl gold mt-2">
+            COLOR RESERVADO
+        </p> -->
+
+    </section>
+
+
+    <!-- =====================================
+       8. REGALOS EN EFECTIVO
+  ====================================== -->
+
+    <section class="section-padding text-center vintage-bg bg-pergamino">
+
+        <p class="script text-4xl gold">Tu cariño es el mejor regalo</p>
+
+        <h2 class="section-title text-white mt-3">
+            Lluvia de sobres
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <p class="max-w-xl mx-auto text-sm text-gray-300 leading-8 mt-6">
+            Tu presencia es el regalo más importante.
+            Si deseas tener un detalle conmigo, hemos dispuesto
+            esta opción para quienes quieran contribuir a mis
+            sueños y proyectos futuros.
+        </p>
+
+        <div class="mt-9">
+
+            <div class="qr-frame">
+                <img src="URL_DE_TU_IMAGEN_QR" alt="Código QR para regalos" class="w-44 h-44 object-contain"
+                    onerror="this.style.display='none'; document.getElementById('qrPlaceholder').style.display='block';">
+
+                <div id="qrPlaceholder" class="hidden w-44 h-44 flex items-center justify-center text-gray-500 text-xs">
+                    Aquí colocar tu código QR
+                </div>
+            </div>
+
+            <p class="text-xs text-gray-400 mt-5 tracking-widest">
+                ESCANEA EL CÓDIGO QR
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+       9. CONFIRMACIÓN RSVP
+  ====================================== -->
+
+    <section class="section-padding text-center vintage-bg bg-rosa">
+
+        <p class="script text-4xl gold">¡Queremos contar contigo!</p>
+
+        <h2 class="section-title mt-3">
+            Confirma tu asistencia
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <p class="text-sm text-gray-500 max-w-md mx-auto leading-7 mt-6">
+            Tu presencia hará que esta celebración sea aún
+            más especial. Por favor, confirma tu asistencia
+            a través de WhatsApp.
+        </p>
+
+        <a id="whatsappButton" href="#" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white px-8 py-4 rounded mt-9 transition shadow-lg">
+
+            <span class="text-2xl">☏</span>
+
+            <span class="text-xs tracking-[2px] font-semibold">
+                CONFIRMAR POR WHATSAPP
+            </span>
+
+        </a>
+
+        <p class="text-xs text-gray-400 mt-5">
+            ¡Esperamos celebrar contigo!
+        </p>
+
+    </section>
+
+
+    <!-- =====================================
+       10. MENSAJE FINAL
+  ====================================== -->
+
+    <footer class="text-center text-white py-20 px-5 vintage-bg bg-medieval">
+
+        <p class="script text-5xl gold">
+            Gracias
+        </p>
+
+        <h2 class="serif text-3xl md:text-4xl mt-5">
+            ¡Gracias por formar parte de mi historia!
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <p class="text-xs tracking-[3px] text-gray-400 mt-6">
+            CON AMOR, BRENDA
+        </p>
+
+        <p class="text-[10px] text-gray-600 mt-12">
+            MIS XV AÑOS · 27 · NOV · 2026
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================
+       JAVASCRIPT
+  ====================================== -->
+
+    <script>
+
+        // -------------------------------------
+        // 1. PERSONALIZACIÓN DE INVITADOS (BASE64)
+        // -------------------------------------
+
+        const params = new URLSearchParams(window.location.search);
+        const codigo = params.get('i');
+
+        const guestName = document.getElementById('guestName');
+        const passesBox = document.getElementById('passesBox');
+        const passesNumber = document.getElementById('passesNumber');
+
+        let nombre = '';
+        let pases = null;
+        let invitacionValida = true;
+
+        // Decodifica Base64 compatible con nombres con tildes y caracteres especiales.
+        function decodificarBase64Url(valor) {
+            let base64 = valor.replace(/-/g, '+').replace(/_/g, '/');
+            while (base64.length % 4) base64 += '=';
+            const binario = atob(base64);
+            const bytes = Uint8Array.from(binario, caracter => caracter.charCodeAt(0));
+            return new TextDecoder().decode(bytes);
+        }
+
+        if (codigo) {
+            try {
+                const datos = JSON.parse(decodificarBase64Url(codigo));
+
+                if (
+                    typeof datos.n !== 'string' ||
+                    !datos.n.trim() ||
+                    !Number.isInteger(datos.p) ||
+                    datos.p < 1 ||
+                    datos.p > 20
+                ) {
+                    throw new Error('Datos de invitación no válidos');
+                }
+
+                nombre = datos.n.trim();
+                pases = datos.p;
+            } catch (error) {
+                invitacionValida = false;
+            }
+        }
+
+        if (!invitacionValida) {
+            guestName.textContent = 'Invitación no válida';
+            passesBox.classList.add('hidden');
+        } else if (nombre) {
+            guestName.textContent = `¡Hola ${nombre}!`;
+        } else {
+            guestName.textContent = '¡Hola Familia y Amigos!';
+        }
+
+        if (invitacionValida && pases !== null) {
+            passesNumber.textContent = `${pases} ${pases === 1 ? 'pase' : 'pases'}`;
+            passesBox.classList.remove('hidden');
+        }
+
+        // -------------------------------------
+        // 2. CUENTA REGRESIVA
+        // -------------------------------------
+
+        // MODIFICA AQUÍ LA FECHA Y HORA DEL EVENTO.
+        // Formato: AAAA-MM-DDTHH:MM:SS-04:00
+        // -04:00 corresponde al horario de Bolivia.
+
+        const fechaEvento = new Date('2026-11-27T17:30:00-04:00').getTime();
+
+        function actualizarContador() {
+
+            const ahora = new Date().getTime();
+
+            const diferencia = fechaEvento - ahora;
+
+            if (diferencia <= 0) {
+
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+
+                return;
+
+            }
+
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+            const horas = Math.floor(
+                (diferencia % (1000 * 60 * 60 * 24)) /
+                (1000 * 60 * 60)
+            );
+
+            const minutos = Math.floor(
+                (diferencia % (1000 * 60 * 60)) /
+                (1000 * 60)
+            );
+
+            const segundos = Math.floor(
+                (diferencia % (1000 * 60)) / 1000
+            );
+
+            document.getElementById('days').textContent =
+                String(dias).padStart(2, '0');
+
+            document.getElementById('hours').textContent =
+                String(horas).padStart(2, '0');
+
+            document.getElementById('minutes').textContent =
+                String(minutos).padStart(2, '0');
+
+            document.getElementById('seconds').textContent =
+                String(segundos).padStart(2, '0');
+
+        }
+
+        actualizarContador();
+
+        setInterval(actualizarContador, 1000);
+
+
+        // -------------------------------------
+        // 3. CONFIRMACIÓN POR WHATSAPP
+        // -------------------------------------
+
+        // MODIFICA AQUÍ EL NÚMERO DE WHATSAPP.
+        // Incluye código de país y ciudad, sin +, espacios ni guiones.
+        // Ejemplo Bolivia: 59171234567
+
+        const numeroWhatsApp = '59174810842';
+
+        const botonWhatsApp = document.getElementById('whatsappButton');
+
+        let mensaje;
+
+        if (!invitacionValida) {
+            mensaje = 'Hola, tengo un problema con el enlace de mi invitación a los XV años.';
+            botonWhatsApp.classList.add('opacity-50', 'pointer-events-none');
+            botonWhatsApp.href = '#';
+            botonWhatsApp.setAttribute('aria-disabled', 'true');
+        } else {
+            mensaje = '¡Hola! Confirmo mi asistencia a los XV años.';
+
+            if (nombre) {
+                mensaje += ` Mi nombre es ${nombre}`;
+                if (pases !== null) {
+                    mensaje += ` y utilizaré mis ${pases} ${pases === 1 ? 'pase' : 'pases'}.`;
+                } else {
+                    mensaje += '.';
+                }
+            } else {
+                mensaje += ' Somos Familia y Amigos.';
+            }
+
+            const enlaceWhatsApp =
+                `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+            botonWhatsApp.href = enlaceWhatsApp;
+        }
+
+    </script>
+
+</body>
+
+</html>
