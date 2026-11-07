@@ -1,115 +1,173 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#17121b">
-  <title>Generador de invitaciones | XV Brenda</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; }
-    body { margin:0; min-height:100vh; padding:28px 16px; display:grid; place-items:center; background:#17121b; color:#f8f3ed; font-family:Montserrat,sans-serif; }
-    .panel { width:min(100%,540px); padding:30px; border:1px solid #b8860b; border-radius:14px; background:#211a25; box-shadow:0 18px 60px #0006; }
-    h1 { margin:0; text-align:center; color:#e4c27b; font:600 2.5rem 'Cormorant Garamond',serif; }
-    .intro { text-align:center; color:#c9bdc9; font-size:.85rem; line-height:1.7; }
-    label { display:block; margin:20px 0 8px; font-size:.78rem; letter-spacing:1px; }
-    input { width:100%; padding:13px 14px; border-radius:7px; border:1px solid #756777; background:#17121b; color:white; font:inherit; outline:none; }
-    input:focus { border-color:#d6b77a; }
-    button { width:100%; margin-top:22px; padding:14px; border:0; border-radius:6px; background:#966f33; color:white; font-weight:600; letter-spacing:1px; cursor:pointer; }
-    button:hover { background:#735221; }
-    .result { display:none; margin-top:24px; padding:16px; border:1px solid #756777; border-radius:8px; }
-    .result.show { display:block; }
-    .success { color:#b9d9ad; font-size:.8rem; }
-    .link { display:block; overflow-wrap:anywhere; margin:12px 0; color:#e4c27b; font-size:.82rem; line-height:1.6; }
-    .copy { margin-top:8px; background:#3b704d; }
-    .copy:hover { background:#2c593c; }
-    .hint { margin-top:18px; color:#aa9eae; font-size:.72rem; line-height:1.6; }
-    .error { min-height:18px; color:#ffb4ab; font-size:.78rem; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Generador de Pases | XV Brenda</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'azul-real': '#1B263B',
+                        'oro-viejo': '#C5A059',
+                        'gris-pizarra': '#415A77',
+                        'pergamino': '#F4EAD4',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <main class="panel">
-    <h1>Generador de invitaciones</h1>
-    <p class="intro">XV años de Brenda · 27 de noviembre de 2026</p>
-    <form id="formulario">
-      <label for="nombre">NOMBRE DEL INVITADO</label>
-      <input id="nombre" type="text" maxlength="80" placeholder="Ej. Pepito Pérez" autocomplete="off" required>
-      <label for="pases">CANTIDAD DE PASES</label>
-      <input id="pases" type="number" min="1" max="20" value="2" required>
-      <label for="urlBase">DIRECCIÓN DE TU INVITACIÓN EN GITHUB PAGES</label>
-      <input id="urlBase" type="url" placeholder="https://usuario.github.io/repositorio/" required>
-      <p class="error" id="error" role="alert"></p>
-      <button type="submit">GENERAR INVITACIÓN</button>
-    </form>
-    <section class="result" id="resultado" aria-live="polite">
-      <p class="success">✓ Enlace generado correctamente</p>
-      <a class="link" id="enlace" href="#" target="_blank" rel="noopener"></a>
-      <button class="copy" id="copiar" type="button">COPIAR ENLACE</button>
-      <p class="hint" id="estadoCopia"></p>
-    </section>
-    <p class="hint">Puedes abrir este generador directamente desde tu computadora. No es necesario publicarlo en GitHub Pages. Si lo abres desde tu sitio, la dirección base se completará automáticamente.<br><br>Base64 solamente oculta los datos a simple vista; no evita que alguien los decodifique y modifique.</p>
-  </main>
-  <script>
-    const formulario = document.getElementById('formulario');
-    const campoNombre = document.getElementById('nombre');
-    const campoPases = document.getElementById('pases');
-    const campoUrl = document.getElementById('urlBase');
-    const resultado = document.getElementById('resultado');
-    const enlace = document.getElementById('enlace');
-    const error = document.getElementById('error');
-    const estadoCopia = document.getElementById('estadoCopia');
 
-    if (location.protocol === 'http:' || location.protocol === 'https:') {
-      campoUrl.value = new URL('./', location.href).href;
-    }
+<body class="bg-azul-real text-pergamino font-sans min-h-screen flex items-center justify-center p-4">
 
-    function codificarBase64Url(objeto) {
-      const bytes = new TextEncoder().encode(JSON.stringify(objeto));
-      let binario = '';
-      bytes.forEach(byte => binario += String.fromCharCode(byte));
-      return btoa(binario).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
-    }
+    <div
+        class="max-w-xl w-full bg-gris-pizarra/30 border-2 border-oro-viejo p-6 md:p-8 rounded-lg shadow-2xl backdrop-blur-md">
 
-    formulario.addEventListener('submit', function(evento) {
-      evento.preventDefault();
-      error.textContent = '';
-      estadoCopia.textContent = '';
-      const nombre = campoNombre.value.trim();
-      const pases = Number(campoPases.value);
-      let base;
-      if (!nombre) { error.textContent = 'Escribe el nombre del invitado.'; return; }
-      if (!Number.isInteger(pases) || pases < 1 || pases > 20) {
-        error.textContent = 'La cantidad de pases debe estar entre 1 y 20.'; return;
-      }
-      try {
-        base = new URL(campoUrl.value.trim());
-        if (!['https:', 'http:'].includes(base.protocol)) throw new Error('URL no válida');
-      } catch {
-        error.textContent = 'Escribe una dirección válida de GitHub Pages.'; return;
-      }
-      if (base.pathname.endsWith('/index.html')) {
-        base.pathname = base.pathname.slice(0, -'index.html'.length);
-      } else if (!base.pathname.endsWith('/')) {
-        base.pathname += '/';
-      }
-      const codigo = codificarBase64Url({n:nombre, p:pases});
-      const urlInvitacion = new URL('index.html', base);
-      urlInvitacion.searchParams.set('i', codigo);
-      enlace.href = urlInvitacion.href;
-      enlace.textContent = urlInvitacion.href;
-      resultado.classList.add('show');
-    });
+        <!-- Header -->
+        <div class="text-center mb-8 border-b border-oro-viejo/30 pb-4">
+            <h1 class="font-serif text-3xl font-bold text-oro-viejo uppercase tracking-wider">Generador de Pases</h1>
+            <p class="text-xs text-pergamino/70 tracking-widest mt-1">XV Años Brenda</p>
+        </div>
 
-    document.getElementById('copiar').addEventListener('click', async function() {
-      try {
-        await navigator.clipboard.writeText(enlace.href);
-        estadoCopia.textContent = 'Enlace copiado. Ya puedes enviarlo por WhatsApp.';
-      } catch {
-        estadoCopia.textContent = 'No se pudo copiar automáticamente. Selecciona y copia el enlace.';
-      }
-    });
-  </script>
+        <!-- Formulario -->
+        <form id="passForm" class="space-y-5" onsubmit="generateLink(event)">
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-oro-viejo font-semibold mb-2">Nombre del
+                    Invitado / Familia</label>
+                <input type="text" id="guestNameInput" required placeholder="Ej. Familia Flores Claros"
+                    class="w-full bg-azul-real border border-oro-viejo/60 rounded px-4 py-3 text-pergamino placeholder-pergamino/40 focus:outline-none focus:border-oro-viejo text-sm">
+            </div>
+
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-oro-viejo font-semibold mb-2">Cantidad de
+                    Pases (1 a 20)</label>
+                <input type="number" id="guestPassesInput" min="1" max="20" value="2" required
+                    class="w-full bg-azul-real border border-oro-viejo/60 rounded px-4 py-3 text-pergamino focus:outline-none focus:border-oro-viejo text-sm">
+            </div>
+
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-oro-viejo font-semibold mb-2">URL Base
+                </label>
+                <input type="url" id="baseUrlInput" required placeholder="https://tu-usuario.github.io/invitacion-xv/"
+                    class="w-full bg-azul-real border border-oro-viejo/60 rounded px-4 py-3 text-pergamino placeholder-pergamino/40 focus:outline-none focus:border-oro-viejo text-sm">
+            </div>
+
+            <button type="submit"
+                class="w-full bg-oro-viejo text-azul-real font-bold py-3 uppercase tracking-widest text-sm hover:bg-transparent hover:text-oro-viejo border border-oro-viejo transition-all duration-300 shadow-md">
+                <i class="fas fa-link mr-2"></i> Generar Enlace Personalizado
+            </button>
+        </form>
+
+        <!-- Contenedor Resultado -->
+        <div id="resultBox" class="hidden mt-8 border-t border-oro-viejo/30 pt-6">
+            <label class="block text-xs uppercase tracking-widest text-oro-viejo font-semibold mb-2">Enlace
+                Generado</label>
+
+            <div class="flex flex-col gap-3">
+                <input type="text" id="generatedUrl" readonly
+                    class="w-full bg-azul-real border border-oro-viejo/40 rounded px-4 py-3 text-xs text-pergamino select-all">
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="copyLink()"
+                        class="flex-1 bg-gris-pizarra hover:bg-gris-pizarra/80 border border-oro-viejo/60 text-pergamino font-semibold py-2.5 text-xs uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2">
+                        <i class="far fa-copy"></i> Copiar Enlace
+                    </button>
+                    <a id="whatsappBtn" href="#" target="_blank"
+                        class="flex-1 bg-emerald-700 hover:bg-emerald-600 text-white font-semibold py-2.5 text-xs uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp"></i> Probar en WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Toast de Éxito -->
+            <div id="toast"
+                class="hidden mt-4 bg-emerald-900/80 border border-emerald-500 text-emerald-200 text-xs px-4 py-3 rounded text-center">
+                <i class="fas fa-check-circle mr-1"></i> ¡Enlace copiado al portapapeles exitosamente!
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Autodetección automática al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            if (location.protocol === 'http:' || location.protocol === 'https:') {
+                const base = new URL('./', location.href);
+                document.getElementById('baseUrlInput').value = base.href;
+            }
+        });
+
+        function codificarBase64Url(objeto) {
+            const bytes = new TextEncoder().encode(JSON.stringify(objeto));
+            let binario = '';
+            bytes.forEach(byte => binario += String.fromCharCode(byte));
+            return btoa(binario).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+        }
+
+        function generateLink(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('guestNameInput').value.trim();
+            const passes = Number(document.getElementById('guestPassesInput').value);
+            let baseUrlStr = document.getElementById('baseUrlInput').value.trim();
+
+            let base;
+            try {
+                base = new URL(baseUrlStr);
+                if (!['https:', 'http:'].includes(base.protocol)) throw new Error('URL no válida');
+            } catch {
+                alert('Escribe una dirección URL base válida.');
+                return;
+            }
+
+            if (base.pathname.endsWith('/index.html') || base.pathname.endsWith('/generadorx.html')) {
+                base.pathname = base.pathname.substring(0, base.pathname.lastIndexOf('/') + 1);
+            } else if (!base.pathname.endsWith('/')) {
+                base.pathname += '/';
+            }
+
+            // Codificar en Base64 URL-safe con estructura JSON { n, p } compatible con la invitación
+            const codigo = codificarBase64Url({ n: name, p: passes });
+            const urlInvitacion = new URL('index.html', base);
+            urlInvitacion.searchParams.set('i', codigo);
+
+            const finalUrl = urlInvitacion.href;
+            document.getElementById('generatedUrl').value = finalUrl;
+
+            // Configurar botón WhatsApp
+            const message = encodeURIComponent(`¡Hola ${name}! Te invito cordialmente a mis XV Años. Descubre todos los detalles y tu pase exclusivo aquí: ${finalUrl}`);
+            document.getElementById('whatsappBtn').href = `https://wa.me/?text=${message}`;
+
+            document.getElementById('resultBox').classList.remove('hidden');
+        }
+
+        function copyLink() {
+            const urlInput = document.getElementById('generatedUrl');
+            urlInput.select();
+            navigator.clipboard.writeText(urlInput.value);
+
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
 </body>
+
 </html>
