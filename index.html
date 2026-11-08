@@ -38,7 +38,6 @@
         }
     </script>
     <style>
-        /* Capa de fondo fija independiente para móviles y PC */
         .bg-contenedor-movil {
             position: fixed;
             top: 0;
@@ -46,15 +45,46 @@
             width: 100vw;
             height: 100vh;
             z-index: -10;
-            /* Lo manda detrás de todo el contenido */
             background-color: #0d0b09;
             background-image:
                 linear-gradient(to bottom, rgba(27, 38, 59, 0.5), rgba(27, 38, 59, 0.95)),
-                url('images/background.jpg');
+                url('images/background-1.jpg');
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
-            /* O puedes usar 'contain' si prefieres verla entera */
+        }
+
+        /* Fondo 1 (Inicio / Portada) */
+        .bg-seccion-1 {
+            background-color: #0d0b09;
+            background-image:
+                linear-gradient(to bottom, rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.9)),
+                url('images/background-1.jpg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Fondo 2 (Secciones intermedias: Itinerario, Regalos, etc.) */
+        .bg-seccion-2 {
+            background-color: #0d0b09;
+            background-image:
+                linear-gradient(to bottom, rgba(27, 38, 59, 0.5), rgba(27, 38, 59, 0.95)),
+                url('images/background-2.jpg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Fondo 3 (Secciones finales: Confirmación y Cierre) */
+        .bg-seccion-3 {
+            background-color: #0d0b09;
+            background-image:
+                linear-gradient(to bottom, rgba(27, 38, 59, 0.6), rgba(27, 38, 59, 0.98)),
+                url('images/background-3.jpg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         body {
@@ -64,43 +94,23 @@
             padding: 0;
             overflow-x: hidden;
             background-color: #0d0b09;
-            /* Fallback por seguridad */
         }
 
-        /* body {
-            font-family: 'Cinzel', serif;
-            background-color: #0d0b09;
-            background-image:
-                linear-gradient(to bottom, rgba(27, 38, 59, 0.75), rgba(27, 38, 59, 0.95)),
-                url('images/background.jpg');
-            background-attachment: fixed;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            color: var(--color-texto);
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        } */
-
-        /* Solución para Celulares y Tablets (iOS / Android) */
         @media (max-width: 768px) {
             body {
                 background-attachment: scroll !important;
             }
         }
 
-        /* Hero Background vintage con fallback */
         .hero-bg {
             background:
-                linear-gradient(to bottom, rgba(27, 38, 59, 0.75), rgba(27, 38, 59, 0.95)),
+                linear-gradient(to bottom, rgba(27, 38, 59, 0.35), rgba(27, 38, 59, 0.95)),
                 url('images/escamas.jpg'),
                 radial-gradient(ellipse at center, #415A77 0%, #1B263B 100%);
             background-size: cover;
             background-position: center;
         }
 
-        /* Bordes dorados vintage */
         .gold-border {
             border: 2px solid #C5A059;
             box-shadow: 0 0 20px rgba(197, 160, 89, 0.25);
@@ -112,9 +122,14 @@
             outline-offset: -6px;
         }
 
-        /* Glassmorphism oscuro vintage */
         .glass-card {
-            background: rgba(27, 38, 59, 0.75);
+            /* Capa de color sólido translúcido combinada con la imagen de pergamino */
+            background-image:
+                linear-gradient(rgba(27, 38, 59, 0.85), rgba(4, 14, 34, 0.85)),
+                url('images/pergamino.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(197, 160, 89, 0.4);
@@ -122,8 +137,8 @@
         }
 
         .glass-pergamino {
-            background-color: rgba(244, 234, 212, 0.95);
-            background-image: url('images/vintage-paper.jpg');
+            background-color: rgba(27, 38, 59, 0.75);
+            background-image: linear-gradient(rgba(27, 38, 59, 0.75), rgba(27, 38, 59, 0.75)), url('images/vintage-paper.jpg');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -132,7 +147,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Animaciones personalizadas */
         @keyframes pulseGlow {
 
             0%,
@@ -149,334 +163,456 @@
             animation: pulseGlow 3s infinite;
         }
 
-        /* Decoración de esquinas estilo medieval */
         .medieval-corner {
             position: relative;
         }
 
-        .medieval-corner::before,
+        /* Esquina superior izquierda */
+        .medieval-corner::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 60px;
+            height: 60px;
+            background-image: url('images/esquina-ornada.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        /* Esquina inferior derecha */
         .medieval-corner::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #C5A059;
-        }
-
-        .medieval-corner::before {
-            top: 6px;
-            left: 6px;
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .medieval-corner::after {
             bottom: 6px;
             right: 6px;
-            border-left: none;
-            border-top: none;
+            width: 60px;
+            height: 60px;
+            background-image: url('images/esquina-ornada.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(180deg);
+            /* Gira la imagen automáticamente para la esquina opuesta */
+        }
+
+        .titulo-dorado {
+            text-shadow: 0 2px 10px rgba(197, 160, 89, 0.5), 0 4px 15px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.1em;
         }
     </style>
 </head>
 
 <body class="antialiased selection:bg-oro-viejo selection:text-azul-real">
-    <div class="bg-contenedor-movil"></div>
+    <!-- <div class="bg-contenedor-movil"></div> -->
 
-    <!-- Reproductor de Música Flotante -->
-    <!-- <div class="fixed top-5 right-5 z-50">
-        <button id="musicToggle" onclick="toggleMusic()"
-            class="flex items-center gap-2 bg-azul-real/90 border border-oro-viejo text-oro-viejo px-4 py-2 rounded-full shadow-xl backdrop-blur-md hover:bg-oro-viejo hover:text-azul-real transition-all duration-300 text-sm tracking-widest uppercase font-semibold">
-            <img src="images/gif/music.gif" alt="Música" class="w-4 h-4 object-contain inline-block"
-                onerror="this.style.display='none'; document.getElementById('musicIconFallback').style.display='inline-block';">
-            <i id="musicIconFallback" class="fas fa-compact-disc fa-spin hidden"></i>
-            <span id="musicText">Música</span>
-        </button>
-        <audio id="bgMusic" loop preload="auto">
-            <source
-                src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73516.mp3?filename=cinematic-time-lapse-115672.mp3"
-                type="audio/mpeg">
-        </audio>
-    </div> -->
-
-    <!-- SECCIÓN A: HERO / PORTADA -->
-    <section class="relative min-h-screen flex items-center justify-center text-center p-6 hero-bg overflow-hidden">
-        <div
-            class="absolute inset-0 opacity-15 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none">
-        </div>
-
-        <div class="relative z-10 max-w-3xl mx-auto border-2 border-oro-viejo p-8 md:p-12 gold-border-inner medieval-corner glass-card"
-            data-aos="fade-up" data-aos-duration="1200">
-            <img src="images/gif/sparkles.gif" alt="Destellos" class="w-12 h-12 mx-auto mb-2 opacity-80"
-                onerror="this.style.display='none'">
-
-            <p class="font-serif italic text-oro-viejo text-lg md:text-xl tracking-widest mb-2 uppercase">Una Noche
-                Mágica Para Recordar</p>
-            <h2 class="font-serif text-2xl md:text-3xl tracking-widest text-pergamino/80 mb-4 uppercase">Mis XV Años
-            </h2>
-
-            <div class="my-6 relative">
-                <img src="images/gif/crown.gif" alt="Corona VIP" class="w-14 h-14 mx-auto mb-2"
-                    onerror="this.style.display='none'; document.getElementById('crownFallback').style.display='block';">
-                <i id="crownFallback" class="fas fa-crown text-3xl text-oro-viejo mb-2 hidden"></i>
-
-                <h1
-                    class="font-serif text-5xl md:text-7xl font-bold text-oro-viejo tracking-wider uppercase drop-shadow-lg">
-                    BRENDA</h1>
-                <div class="w-32 h-0.5 bg-oro-viejo mx-auto my-4"></div>
+    <div class="relative bg-seccion-1 pb-16">
+        <!-- SECCIÓN A: HERO / PORTADA -->
+        <section class="relative min-h-screen flex items-center justify-center text-center p-6 hero-bg overflow-hidden">
+            <div
+                class="absolute inset-0 opacity-15 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none">
             </div>
 
-            <p class="font-serif text-xl md:text-2xl text-pergamino tracking-widest mb-8">27 · NOV · 2026</p>
+            <div class="relative z-10 max-w-3xl mx-auto border-2 border-oro-viejo p-8 md:p-12 gold-border-inner medieval-corner glass-card"
+                data-aos="fade-up" data-aos-duration="1200"
+                style="background-image: url('images/sparkles.png'); background-size: cover; background-position: center;">
 
-            <a href="#pase-section"
-                class="inline-flex items-center gap-2 bg-oro-viejo text-azul-real font-semibold px-8 py-3 rounded-none border border-oro-viejo hover:bg-transparent hover:text-oro-viejo transition-all duration-300 text-sm tracking-widest uppercase pulse-gold">
-                <span>Descubre mi invitación</span>
-                <img src="images/gif/scroll.gif" alt="Scroll" class="w-4 h-4 object-contain inline-block"
-                    onerror="this.style.display='none'">
-            </a>
-        </div>
-    </section>
+                <p class="font-serif italic text-oro-viejo text-lg md:text-xl tracking-widest mb-2 uppercase">Una Noche
+                    Mágica Para Recordar</p>
 
-    <!-- SECCIÓN B: FRASE / MENSAJE INICIAL -->
-    <section class="py-20 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <div class="glass-pergamino p-8 md:p-12 rounded-lg shadow-2xl relative medieval-corner">
-            <i class="fas fa-quote-left text-oro-viejo/40 text-4xl mb-4 block"></i>
-            <p class="font-serif text-lg md:text-2xl italic leading-relaxed text-azul-real font-medium">
-                "Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que más
-                quieres los convierte en inolvidables. Acompáñame a celebrar el inicio de una nueva leyenda."
-            </p>
-            <div class="w-16 h-0.5 bg-oro-viejo mx-auto my-6"></div>
-            <p class="font-serif font-bold text-borgona tracking-wider uppercase text-sm md:text-base">— Brenda —</p>
-        </div>
-    </section>
-
-    <!-- SECCIÓN C: PASE PERSONALIZADO -->
-    <section id="pase-section" class="py-16 px-6 max-w-3xl mx-auto" data-aos="zoom-in">
-        <div class="text-center mb-8">
-            <h2 class="font-serif text-3xl md:text-4xl text-oro-viejo uppercase tracking-wider">Tu Pase Exclusivo</h2>
-            <div class="w-20 h-0.5 bg-oro-viejo mx-auto mt-2"></div>
-        </div>
-
-        <div class="glass-card p-6 md:p-8 rounded-lg gold-border relative overflow-hidden">
-            <div class="absolute -right-6 -top-6 opacity-20 pointer-events-none">
-                <img src="images/gif/crown.gif" alt="Crown Watermark" class="w-40 h-40"
-                    onerror="this.style.display='none'">
-            </div>
-
-            <div class="text-center relative z-10">
-                <p class="text-sm uppercase tracking-widest text-oro-viejo mb-1">Invitado de Honor</p>
-                <h3 id="guestName"
-                    class="font-serif text-2xl md:text-4xl font-bold text-pergamino mb-4 uppercase tracking-wide">
-                    Cargando Invitación...</h3>
-
-                <div
-                    class="inline-block bg-azul-real/90 border border-oro-viejo px-6 py-3 rounded-md my-2 shadow-inner">
-                    <p class="text-sm uppercase tracking-wider text-pergamino/70">Pases Asignados</p>
-                    <p id="guestPasses" class="font-serif text-3xl font-bold text-oro-viejo">--</p>
+                <div class="my-6 relative">
+                    <!-- CORREGIDO: Se ajustó con max-w y h-auto para que no se rompa el diseño -->
+                    <img src="images/nombre.png" alt="Brenda"
+                        class="max-w-sm md:max-w-xl lg:max-w-2xl h-auto mx-auto mb-2 object-contain"
+                        onerror="this.style.display='none'; document.getElementById('crownFallback').style.display='block';">
+                    <i id="crownFallback" class="fas fa-crown text-3xl text-oro-viejo mb-2 hidden"></i>
+                    <div class="w-32 h-0.5 bg-oro-viejo mx-auto my-4"></div>
                 </div>
 
-                <p class="text-sm text-pergamino/60 mt-4 italic">Por favor presenta este pase digital al ingresar al
-                    evento.</p>
+                <p class="font-serif text-xl md:text-2xl text-pergamino tracking-widest mb-8">27 · NOV · 2026</p>
+
+                <a href="#pase-section"
+                    class="relative inline-flex items-center justify-center w-full max-w-xl mx-auto px-8 py-5 bg-black/40 backdrop-blur-sm border-2 border-oro-viejo rounded-2xl text-pergamino hover:border-oro-viejo/80 transition-all duration-300 shadow-lg group">
+                    <span class="font-serif italic text-2xl md:text-3xl tracking-wide text-center text-white">
+                        Ingresar a mi invitación
+                    </span>
+                    <div class="absolute -right-6 -bottom-6 z-20 pointer-events-none">
+                        <img src="images/click.gif" alt="Click"
+                            class="w-16 h-16 object-contain rotate-[-25deg] transition-transform duration-300 group-hover:scale-110"
+                            onerror="this.style.display='none'">
+                    </div>
+                </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SECCIÓN D: PADRES -->
-    <section class="py-16 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <div class="mb-8">
-            <h2 class="font-serif text-3xl text-oro-viejo uppercase tracking-widest">Con la Bendición de mis Padres</h2>
-            <div class="w-16 h-0.5 bg-oro-viejo mx-auto mt-2"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <div class="glass-card p-6 rounded-lg border border-oro-viejo/30">
-                <i class="fas fa-heart text-oro-viejo mb-3"></i>
-                <p class="font-serif text-xl text-pergamino font-semibold">Abad Antonio Rios Vallejos</p>
-                <p class="text-sm text-oro-viejo uppercase tracking-widest mt-1">Padre</p>
+        <img src="images/dragon-1.gif" alt="Adorno" 
+     class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-40 pointer-events-none object-contain"
+     style="width: 335px; height: 235px;">
+
+        <!-- SECCIÓN B: FRASE / MENSAJE INICIAL -->
+        <section class="py-20 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <div class="glass-pergamino p-8 md:p-12 rounded-lg shadow-2xl relative medieval-corner">
+                <i class="fas fa-quote-left text-oro-viejo/40 text-4xl mb-4 block"></i>
+                <p class="font-serif text-lg md:text-2xl italic leading-relaxed text-white font-medium">
+                    "Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que más
+                    quieres los convierte en inolvidables. Acompáñame a celebrar el inicio de una nueva leyenda."
+                </p>
+                <div class="w-16 h-0.5 bg-oro-viejo mx-auto my-6"></div>
+                <!-- <p class="font-serif font-bold text-borgona tracking-wider uppercase text-sm md:text-base">— Brenda —</p> -->
             </div>
-            <div class="glass-card p-6 rounded-lg border border-oro-viejo/30">
-                <i class="fas fa-heart text-oro-viejo mb-3"></i>
-                <p class="font-serif text-xl text-pergamino font-semibold">Marisol Claros Torrico</p>
-                <p class="text-sm text-oro-viejo uppercase tracking-widest mt-1">Madre</p>
+        </section>
+    
+        <!-- SECCIÓN C: PASE PERSONALIZADO -->
+        <section id="pase-section" class="py-16 px-6 max-w-3xl mx-auto" data-aos="zoom-in">
+            <div class="text-center mb-8">
+                <h2 class="font-serif text-4xl md:text-4xl text-oro-viejo uppercase titulo-dorado mb-3">
+                    Tu Pase Exclusivo
+                </h2>
+                <div class="w-20 h-0.5 bg-oro-viejo mx-auto mt-2"></div>
             </div>
-        </div>
-    </section>
 
-    <!-- SECCIÓN E: CUENTA REGRESIVA -->
-    <section class="py-16 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <h2 class="font-serif text-3xl text-oro-viejo uppercase tracking-widest mb-8">El Gran Día Se Acerca</h2>
+            <div
+                class="glass-card p-8 rounded-lg text-center max-w-2xl mx-auto border border-oro-viejo medieval-corner">
+                <div class="absolute -right-6 -top-6 opacity-20 pointer-events-none">
+                    <img src="images/gif/crown.gif" alt="Crown Watermark" class="w-40 h-40"
+                        onerror="this.style.display='none'">
+                </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-10">
-            <div class="glass-card p-4 rounded-lg border border-oro-viejo">
-                <span id="cd-days" class="font-serif text-4xl md:text-5xl font-bold text-pergamino block">00</span>
-                <span class="text-sm text-oro-viejo uppercase tracking-widest">Días</span>
+                <div class="text-center relative z-10">
+                    <p class="text-sm uppercase tracking-widest text-oro-viejo mb-1">Invitado de Honor</p>
+                    <h3 id="guestName"
+                        class="font-serif text-2xl md:text-4xl font-bold text-pergamino mb-4 uppercase tracking-wide">
+                        Cargando Invitación...</h3>
+
+                    <div
+                        class="inline-block bg-azul-real/90 border border-oro-viejo px-6 py-3 rounded-md my-2 shadow-inner">
+                        <p class="text-sm uppercase tracking-wider text-pergamino/70 mb-2">Pases Asignados</p>
+                        <div class="flex items-center justify-center gap-3">
+                            <div class="border border-oro-viejo/60 px-4 py-2 rounded-lg shadow-inner">
+                                <p id="guestPasses"
+                                    class="font-serif text-4xl md:text-5xl font-extrabold text-oro-viejo tracking-tight">
+                                    --
+                                </p>
+                            </div>
+                            <img src="images/pase.gif" alt="Pase" class="w-24 h-24 object-contain"
+                                onerror="this.style.display='none'">
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-pergamino/60 mt-4 italic">Por favor presenta este pase digital al ingresar al
+                        evento.</p>
+                </div>
             </div>
-            <div class="glass-card p-4 rounded-lg border border-oro-viejo">
-                <span id="cd-hours" class="font-serif text-4xl md:text-5xl font-bold text-pergamino block">00</span>
-                <span class="text-sm text-oro-viejo uppercase tracking-widest">Horas</span>
+        </section>
+
+        <!-- SECCIÓN D: PADRES -->
+        <section class="py-16 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <div class="mb-8">
+                <h2 class="font-serif text-4xl text-oro-viejo uppercase tracking-widest titulo-dorado mb-3">Con la
+                    Bendición de mis Padres</h2>
+                <div class="w-20 h-0.5 bg-oro-viejo mx-auto mt-2"></div>
             </div>
-            <div class="glass-card p-4 rounded-lg border border-oro-viejo">
-                <span id="cd-minutes" class="font-serif text-4xl md:text-5xl font-bold text-pergamino block">00</span>
-                <span class="text-sm text-oro-viejo uppercase tracking-widest">Minutos</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                <div class="glass-card p-6 rounded-lg border border-oro-viejo/30">
+                    <i class="fas fa-heart text-oro-viejo mb-3"></i>
+                    <p class="font-serif text-xl text-pergamino font-semibold">Abad Antonio Rios Vallejos</p>
+                    <p class="text-sm text-oro-viejo uppercase tracking-widest mt-1">Padre</p>
+                </div>
+                <div class="glass-card p-6 rounded-lg border border-oro-viejo/30">
+                    <i class="fas fa-heart text-oro-viejo mb-3"></i>
+                    <p class="font-serif text-xl text-pergamino font-semibold">Marisol Claros Torrico</p>
+                    <p class="text-sm text-oro-viejo uppercase tracking-widest mt-1">Madre</p>
+                </div>
             </div>
-            <div class="glass-card p-4 rounded-lg border border-oro-viejo">
-                <span id="cd-seconds" class="font-serif text-4xl md:text-5xl font-bold text-pergamino block">00</span>
-                <span class="text-sm text-oro-viejo uppercase tracking-widest">Segundos</span>
+        </section>
+</div>
+
+    <div class="bg-seccion-2">
+        <!-- SECCIÓN E: CUENTA REGRESIVA -->
+        <section class="py-16 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="font-serif text-4xl text-oro-viejo uppercase tracking-widest titulo-dorado mb-3">El Gran Día Se
+                Acerca</h2>
+            <div class="w-20 h-0.5 bg-oro-viejo mx-auto mb-8"></div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-10">
+                <div class="glass-card p-4 rounded-lg border border-oro-viejo">
+                    <span id="cd-days" class="font-serif text-4xl md:text-5xl font-bold text-pergamino block">00</span>
+                    <span class="text-sm text-oro-viejo uppercase tracking-widest">Días</span>
+                </div>
+                <div class="glass-card p-4 rounded-lg border border-oro-viejo">
+                    <span id="cd-hours" class="font-serif text-4xl md:text-5xl font-bold text-pergamino block">00</span>
+                    <span class="text-sm text-oro-viejo uppercase tracking-widest">Horas</span>
+                </div>
+                <div class="glass-card p-4 rounded-lg border border-oro-viejo">
+                    <span id="cd-minutes"
+                        class="font-serif text-4xl md:text-5xl font-bold text-pergamino block">00</span>
+                    <span class="text-sm text-oro-viejo uppercase tracking-widest">Minutos</span>
+                </div>
+                <div class="glass-card p-4 rounded-lg border border-oro-viejo">
+                    <span id="cd-seconds"
+                        class="font-serif text-4xl md:text-5xl font-bold text-pergamino block">00</span>
+                    <span class="text-sm text-oro-viejo uppercase tracking-widest">Segundos</span>
+                </div>
             </div>
-        </div>
 
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=XV+A%C3%B1os+de+Brenda&dates=20261127T213000Z/20261128T040000Z&details=Celebraci%C3%B3n+de+los+XV+A%C3%B1os+de+Brenda+en+Sal%C3%B3n+NOTREDAME.&location=Sal%C3%B3n+de+Eventos+NOTREDAME,+Av.+D%27Orbigny+esq.+Cobija"
-            target="_blank"
-            class="inline-flex items-center gap-2 border border-oro-viejo px-6 py-2.5 rounded-none text-sm text-oro-viejo uppercase tracking-widest hover:bg-oro-viejo hover:text-azul-real transition-all duration-300">
-            <i class="far fa-calendar-plus"></i> Agendar en Calendar
-        </a>
-    </section>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=XV+A%C3%B1os+de+Brenda&dates=20261127T213000Z/20261128T040000Z&details=Celebraci%C3%B3n+de+los+XV+A%C3%B1os+de+Brenda+en+Sal%C3%B3n+NOTREDAME.&location=Sal%C3%B3n+de+Eventos+NOTREDAME,+Av.+D%27Orbigny+esq.+Cobija"
+                target="_blank"
+                class="relative inline-flex items-center justify-between w-full max-w-xl mx-auto px-8 py-5 bg-black/40 backdrop-blur-sm border-2 border-oro-viejo rounded-2xl text-pergamino hover:border-oro-viejo/80 transition-all duration-300 shadow-lg group">
+                <span class="flex items-center">
+                    <img src="images/calendario.gif" alt="Calendar" class="w-24 h-24 object-contain"
+                        onerror="this.style.display='none'">
+                </span>
+                <span class="font-serif italic text-2xl md:text-3xl tracking-wide text-center text-white mx-auto">
+                    Agendar en el calendario
+                </span>
+                <div class="absolute -right-6 -bottom-6 z-20 pointer-events-none">
+                    <img src="images/click.gif" alt="Click"
+                        class="w-16 h-16 object-contain rotate-[-25deg] transition-transform duration-300 group-hover:scale-110"
+                        onerror="this.style.display='none'">
+                </div>
+            </a>
+        </section>
 
-    <!-- SECCIÓN F: RECEPCIÓN -->
-    <section class="py-16 px-6 max-w-4xl mx-auto" data-aos="fade-up">
-        <div class="text-center mb-10">
-            <h2 class="font-serif text-3xl md:text-4xl text-oro-viejo uppercase tracking-widest">¿Dónde y Cuándo?</h2>
-            <div class="w-20 h-0.5 bg-oro-viejo mx-auto mt-2"></div>
-        </div>
+        <!-- SECCIÓN F: RECEPCIÓN -->
+        <section class="py-16 px-6 max-w-4xl mx-auto" data-aos="fade-up">
+            <div class="text-center mb-10">
+                <h2 class="font-serif text-3xl md:text-4xl text-oro-viejo uppercase tracking-widest titulo-dorado mb-3">
+                    ¿Dónde y Cuándo?</h2>
+                <div class="w-20 h-0.5 bg-oro-viejo mx-auto mt-2"></div>
+            </div>
 
-        <div class="glass-card p-8 rounded-lg text-center max-w-2xl mx-auto border border-oro-viejo medieval-corner">
-            <img src="images/gif/map.gif" alt="Ubicación" class="w-12 h-12 mx-auto mb-4"
-                onerror="this.style.display='none'; document.getElementById('mapIconFallback').style.display='block';">
-            <i id="mapIconFallback" class="fas fa-glass-cheers text-4xl text-oro-viejo mb-4 hidden"></i>
+            <div
+                class="glass-card p-8 rounded-lg text-center max-w-2xl mx-auto border border-oro-viejo medieval-corner">
+                <i id="mapIconFallback" class="fas fa-glass-cheers text-4xl text-oro-viejo mb-4 hidden"></i>
 
-            <h3 class="font-serif text-2xl font-bold text-pergamino uppercase tracking-wide mb-2">Recepción Social</h3>
-            <p class="text-oro-viejo font-semibold text-lg mb-1">Viernes 27 de Noviembre, 2026</p>
-            <p class="text-pergamino/80 text-sm mb-6">Hora de Ingreso: 17:30 HRS.</p>
+                <h3 class="font-serif text-2xl font-bold text-pergamino uppercase tracking-wide mb-2">Recepción Social
+                </h3>
 
-            <div class="border-t border-b border-oro-viejo/30 py-4 my-4">
+                <img src="images/calendario.gif" alt="Ubicación" class="w-24 h-24 mx-auto mb-4"
+                    onerror="this.style.display='none'; document.getElementById('mapIconFallback').style.display='block';">
+                <p class="text-oro-viejo font-semibold text-lg mb-1">Viernes 27 de Noviembre, 2026</p>
+
+                <img src="images/reloj.gif" alt="Ubicación" class="w-24 h-24 mx-auto mb-4"
+                    onerror="this.style.display='none'; document.getElementById('mapIconFallback').style.display='block';">
+                <p class="text-pergamino/80 text-sm mb-6">Hora de Ingreso: 17:30 HRS.</p>
+
+                <img src="images/mapa.gif" alt="Ubicación" class="w-24 h-24 mx-auto mb-4"
+                    onerror="this.style.display='none'; document.getElementById('mapIconFallback').style.display='block';">
                 <p class="font-serif text-xl font-bold text-pergamino">Salón de Eventos NOTREDAME</p>
-                <p class="text-sm text-pergamino/70">Av. D’Orbigny esq. Cobija</p>
-            </div>
+                <p class="text-sm text-pergamino/70 mb-6">Av. D’Orbigny esq. Cobija</p>
 
-            <a href="https://maps.app.goo.gl/4WBKfRm43toPQa6D9" target="_blank"
-                class="inline-flex items-center gap-2 bg-oro-viejo text-azul-real font-semibold px-6 py-3 rounded-none text-sm tracking-widest uppercase hover:bg-transparent hover:text-oro-viejo border border-oro-viejo transition-all duration-300 mt-2">
-                <i class="fas fa-map-marker-alt"></i> Ver Ubicación en Maps
-            </a>
-        </div>
-    </section>
-
-    <!-- SECCIÓN G: ITINERARIO -->
-    <section class="py-16 px-6 max-w-3xl mx-auto" data-aos="fade-up">
-        <div class="text-center mb-12">
-            <img src="images/gif/cheers.gif" alt="Brindis" class="w-12 h-12 mx-auto mb-2 opacity-80"
-                onerror="this.style.display='none'">
-            <h2 class="font-serif text-3xl text-oro-viejo uppercase tracking-widest">Itinerario de la Noche</h2>
-            <div class="w-16 h-0.5 bg-oro-viejo mx-auto mt-2"></div>
-        </div>
-
-        <p class="text-sm md:text-sm text-pergamino/80 leading-relaxed mb-6">
-            Cada instante tendrá algo especial. Asegúrate de llegar a tiempo para no perderte ningún momento de esta
-            mágica celebración.
-        </p>
-        <div class="relative border-l-2 border-oro-viejo/40 ml-4 md:ml-32 space-y-8">
-            <div class="relative pl-6">
-                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-oro-viejo border-4 border-azul-real">
-                </div>
-                <span class="text-sm font-semibold text-oro-viejo tracking-widest block mb-1">17:30 HRS.</span>
-                <h4 class="font-serif text-xl text-pergamino font-bold">Recepción & Bienvenida</h4>
-                <p class="text-sm text-pergamino/70">Llegada de invitados y cóctel de inicio.</p>
-            </div>
-            <div class="relative pl-6">
-                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-oro-viejo border-4 border-azul-real">
-                </div>
-                <span class="text-sm font-semibold text-oro-viejo tracking-widest block mb-1">20:00 HRS.</span>
-                <h4 class="font-serif text-xl text-pergamino font-bold">Acto Central</h4>
-                <p class="text-sm text-pergamino/70">Entrada triunfal, vals con los padres y brindis de honor.</p>
-            </div>
-            <div class="relative pl-6">
-                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-oro-viejo border-4 border-azul-real">
-                </div>
-                <span class="text-sm font-semibold text-oro-viejo tracking-widest block mb-1">21:00 HRS.</span>
-                <h4 class="font-serif text-xl text-pergamino font-bold">Número Sorpresa</h4>
-                <p class="text-sm text-pergamino/70">Un espectáculo especial preparado para esta velada.</p>
-            </div>
-            <div class="relative pl-6">
-                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-oro-viejo border-4 border-azul-real">
-                </div>
-                <span class="text-sm font-semibold text-oro-viejo tracking-widest block mb-1">22:00 HRS.</span>
-                <h4 class="font-serif text-xl text-pergamino font-bold">¡Que Comience la Fiesta!</h4>
-                <p class="text-sm text-pergamino/70">Apertura oficial de la pista de baile.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN H: REGALOS Y LLUVIA DE SOBRES -->
-    <section class="py-16 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <div class="glass-card p-8 rounded-lg border border-oro-viejo max-w-2xl mx-auto medieval-corner">
-            <img src="images/gif/envelope.gif" alt="Sobre" class="w-12 h-12 mx-auto mb-4"
-                onerror="this.style.display='none'; document.getElementById('envFallback').style.display='block';">
-            <i id="envFallback" class="fas fa-envelope-open-text text-4xl text-oro-viejo mb-4 hidden"></i>
-
-            <h2 class="font-serif text-3xl text-oro-viejo uppercase tracking-widest mb-3">Lluvia de Sobres</h2>
-            <p class="text-sm md:text-sm text-pergamino/80 leading-relaxed mb-6">
-                El mejor regalo es tu presencia en este día tan especial. Si deseas realizar un obsequio en efectivo,
-                contaremos con un buzón especial el día del evento o puedes realizar una transferencia bancaria.
-            </p>
-
-            <div class="bg-azul-real/90 border border-oro-viejo/40 p-4 rounded-lg inline-block">
-                <div class="bg-white p-3 rounded-md inline-block mb-3">
-                    <img src="images/qr.jpeg" alt="Código QR Transferencia" class="w-36 h-36 mx-auto">
-                </div>
-                <p class="text-sm text-oro-viejo uppercase tracking-wider font-semibold">Transferencia QR Directa</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN I: DRESS CODE -->
-    <section class="py-16 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <div class="glass-card p-8 rounded-lg border border-oro-viejo max-w-2xl mx-auto">
-            <i class="fas fa-user-tie text-4xl text-oro-viejo mb-4"></i>
-            <h2 class="font-serif text-3xl text-oro-viejo uppercase tracking-widest mb-2">Código de Vestimenta</h2>
-            <p class="text-lg font-serif text-pergamino font-semibold uppercase tracking-wider mb-4">Elegante / Etiqueta
-            </p>
-
-            <div class="bg-borgona/40 border border-borgona p-4 rounded-md text-sm md:text-sm text-pergamino/90">
-                <i class="fas fa-exclamation-circle text-oro-viejo mr-1"></i>
-                <strong>Nota Importante:</strong> El color <span class="text-oro-viejo font-semibold underline">Azul en
-                    todas sus tonalidades</span> está reservado exclusivamente para la quinceañera.
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN J & K: CONFIRMACIÓN Y CONTACTOS -->
-    <section class="py-20 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <div class="mb-8">
-            <h2 class="font-serif text-3xl md:text-4xl text-oro-viejo uppercase tracking-widest">Confirmar Asistencia
-            </h2>
-            <p class="text-sm text-pergamino/70 mt-2">¡Queremos contar contigo! Tu presencia hará que esta celebración
-                sea aún más especial. Por favor, confirma tu asistencia a través de WhatsApp.</p>
-        </div>
-
-        <div class="mb-12">
-            <button onclick="sendRSVP()"
-                class="inline-flex items-center gap-3 bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-8 py-4 rounded-none border border-emerald-500 shadow-lg text-sm tracking-widest uppercase transition-all duration-300">
-                <i class="fab fa-whatsapp text-xl"></i> Confirmar Asistencia por WhatsApp
-            </button>
-        </div>
-
-        <div class="border-t border-oro-viejo/30 pt-10">
-            <h3 class="font-serif text-xl text-oro-viejo uppercase tracking-widest mb-6">¿Tienes alguna duda?</h3>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://wa.me/59174810842?text=Hola%20Brenda,%20tengo%20una%20consulta%20sobre%20tus%20XV%20A%C3%B1os"
-                    target="_blank"
-                    class="glass-card px-5 py-3 rounded-none border border-oro-viejo/40 text-sm text-pergamino hover:border-oro-viejo transition-all">
-                    <i class="fab fa-whatsapp text-oro-viejo mr-2"></i> Contactar a Brenda
-                </a>
-                <a href="https://wa.me/59174810842?text=Hola,%20tengo%20una%20consulta%20sobre%20los%20XV%20A%C3%B1os%20de%20Brenda"
-                    target="_blank"
-                    class="glass-card px-5 py-3 rounded-none border border-oro-viejo/40 text-sm text-pergamino hover:border-oro-viejo transition-all">
-                    <i class="fab fa-whatsapp text-oro-viejo mr-2"></i> Contactar a los Padres
+                <a href="https://maps.app.goo.gl/4WBKfRm43toPQa6D9" target="_blank"
+                    class="relative inline-flex items-center justify-between w-full max-w-xl mx-auto px-8 py-5 bg-black/40 backdrop-blur-sm border-2 border-oro-viejo rounded-2xl text-pergamino hover:border-oro-viejo/80 transition-all duration-300 shadow-lg group">
+                    <span class="font-serif italic text-2xl md:text-3xl tracking-wide text-center text-white mx-auto">
+                        Ver ubicación en Maps
+                    </span>
+                    <div class="absolute -right-6 -bottom-6 z-20 pointer-events-none">
+                        <img src="images/click.gif" alt="Click"
+                            class="w-16 h-16 object-contain rotate-[-25deg] transition-transform duration-300 group-hover:scale-110"
+                            onerror="this.style.display='none'">
+                    </div>
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
+   
+        <img src="images/dragon-2.gif" alt="Adorno" 
+     class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-40 pointer-events-none object-contain"
+     style="width: 335px; height: 235px;">
 
+        <!-- SECCIÓN G: ITINERARIO (Corregido: sin duplicados) -->
+        <section class="py-16 px-6 max-w-3xl mx-auto" data-aos="fade-up">
+            <div class="text-center mb-12">
+                <img src="images/gif/cheers.gif" alt="Brindis" class="w-12 h-12 mx-auto mb-2 opacity-80"
+                    onerror="this.style.display='none'">
+                <h2 class="font-serif text-4xl text-oro-viejo uppercase tracking-widest  titulo-dorado mb-3">Itinerario
+                    de la Noche</h2>
+                <div class="w-16 h-0.5 bg-oro-viejo mx-auto mt-2"></div>
+            </div>
+            <div class="glass-card p-8 rounded-lg border border-oro-viejo max-w-2xl mx-auto medieval-corner">
+                <p class="text-sm md:text-sm text-pergamino/80 leading-relaxed mb-6">
+                    Cada instante tendrá algo especial. Asegúrate de llegar a tiempo para no perderte ningún momento de
+                    esta
+                    mágica celebración.
+                </p>
+
+                <div class="relative border-l-2 border-oro-viejo/40 ml-12 md:ml-32 space-y-12">
+
+                    <!-- Ítem 1: Recepción -->
+                    <div class="relative pl-16 md:pl-24">
+                        <div
+                            class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                            <img src="images/recepcion.gif" alt="Recepción" class="w-full h-full object-contain"
+                                onerror="this.style.display='none'">
+                        </div>
+                        <span class="text-sm font-semibold text-oro-viejo tracking-widest block mb-1">17:30 HRS.</span>
+                        <h4 class="font-serif text-xl text-pergamino font-bold">Recepción & Bienvenida</h4>
+                        <p class="text-sm text-pergamino/70">Llegada de invitados y cóctel de inicio.</p>
+                    </div>
+
+                    <!-- Ítem 2: Acto Central -->
+                    <div class="relative pl-16 md:pl-24">
+                        <div
+                            class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                            <img src="images/vals.gif" alt="Acto Central" class="w-full h-full object-contain"
+                                onerror="this.style.display='none'">
+                        </div>
+                        <span class="text-sm font-semibold text-oro-viejo tracking-widest block mb-1">20:00 HRS.</span>
+                        <h4 class="font-serif text-xl text-pergamino font-bold">Acto Central</h4>
+                        <p class="text-sm text-pergamino/70">Entrada triunfal, vals con los padres y brindis de honor.
+                        </p>
+                    </div>
+
+                    <!-- Ítem 3: Número Sorpresa 1-->
+                    <div class="relative pl-16 md:pl-24">
+                        <div
+                            class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                            <img src="images/sorpresa.gif" alt="Sorpresa" class="w-full h-full object-contain"
+                                onerror="this.style.display='none'">
+                        </div>
+                        <span class="text-sm font-semibold text-oro-viejo tracking-widest block mb-1">23:00 HRS.</span>
+                        <h4 class="font-serif text-xl text-pergamino font-bold">Número Sorpresa 1</h4>
+                        <p class="text-sm text-pergamino/70">Un espectáculo especial preparado para esta velada.</p>
+                    </div>
+
+                    <!-- Ítem 4: Número Sorpresa 2-->
+                    <div class="relative pl-16 md:pl-24">
+                        <!-- Círculo posicionado más a la izquierda para que no invada el texto -->
+                        <div
+                            class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                            <img src="images/sorpresa.gif" alt="Sorpresa" class="w-full h-full object-contain"
+                                onerror="this.style.display='none'">
+                        </div>
+                        <span class="text-sm font-semibold text-oro-viejo tracking-widest block mb-1">21:00 HRS.</span>
+                        <h4 class="font-serif text-xl text-pergamino font-bold">Número Sorpresa</h4>
+                        <p class="text-sm text-pergamino/70">Un espectáculo especial preparado para esta velada.</p>
+                    </div>
+
+                    <!-- Ítem 5: Fin de la Fiesta -->
+                    <div class="relative pl-16 md:pl-24">
+                        <div
+                            class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                            <img src="images/fiesta.gif" alt="Fiesta" class="w-full h-full object-contain"
+                                onerror="this.style.display='none'">
+                        </div>
+                        <span class="text-sm font-semibold text-oro-viejo tracking-widest block mb-1">2:00 HRS.</span>
+                        <h4 class="font-serif text-xl text-pergamino font-bold">¡Culminamos la Fiesta!</h4>
+                        <p class="text-sm text-pergamino/70">Gracias por hacer de este día algo mágico.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+ </div>
+    <div class="bg-seccion-3">
+        <!-- SECCIÓN H: REGALOS Y LLUVIA DE SOBRES -->
+        <section class="py-16 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <div class="glass-card p-8 rounded-lg border border-oro-viejo max-w-2xl mx-auto medieval-corner">
+
+                <img src="images/regalo.gif" alt="Regalo" class="w-24 h-24 mx-auto mb-4"
+                    onerror="this.style.display='none'; document.getElementById('giftFallback').style.display='block';">
+                <h2 class="font-serif text-3xl text-oro-viejo uppercase tracking-widest mb-3">Sugerencias de Regalo</h2>
+                <p class="text-sm md:text-sm text-pergamino/80 leading-relaxed mb-6">
+                    Más allá de cualquier detalle, lo que más valoro es compartir este día contigo. Si deseas hacerme un
+                    presente en físico, será un hermoso recuerdo que guardaré de mis quince años.
+                </p>
+
+                <img src="images/sobre.gif" alt="Sobre" class="w-24 h-24 mx-auto mb-4"
+                    onerror="this.style.display='none'; document.getElementById('envFallback').style.display='block';">
+                <h2 class="font-serif text-3xl text-oro-viejo uppercase tracking-widest mb-3">Lluvia de Sobres</h2>
+                <p class="text-sm md:text-sm text-pergamino/80 leading-relaxed mb-6">
+                    La lluvia de sobres es una tradición que simboliza buenos deseos y bendiciones. Si deseas
+                    participar,
+                    puedes hacerlo a través de un sobre el dia del evento.
+                </p>
+
+                <!-- Contenedor principal relativo QR + Monedas -->
+                <div class="relative inline-block mx-auto mb-4">
+                    <img src="images/qr.gif" alt="Código QR" class="w-24 h-24 mx-auto block object-contain"
+                        onerror="this.style.display='none'; document.getElementById('qrFallback').style.display='block';">
+
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-md backdrop-blur-xs"
+                            style="background-color: rgba(27, 38, 59, 0.99);">
+                            <img src="images/monedas.gif" alt="Monedas" class="w-8 h-8 object-contain"
+                                onerror="this.style.display='none';">
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="font-serif text-3xl text-oro-viejo uppercase tracking-widest mb-3">Transferencia QR</h2>
+                <p class="text-sm md:text-sm text-pergamino/80 leading-relaxed mb-6">
+                    Si te resulta más cómodo, puedes realizar tu contribución mediante una transferencia directa
+                    escaneando
+                    el código QR que se encuentra a continuación.
+                </p>
+
+                <div class="bg-azul-real/90 border border-oro-viejo/40 p-4 rounded-lg inline-block">
+                    <div class="bg-white p-3 rounded-md inline-block mb-3">
+                        <img src="images/qr.jpeg" alt="Código QR Transferencia" class="w-36 h-36 mx-auto">
+                    </div>
+                    <p class="text-sm text-oro-viejo uppercase tracking-wider font-semibold">Transferencia QR Directa
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN I: DRESS CODE -->
+        <section class="py-16 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <div class="glass-card p-8 rounded-lg border border-oro-viejo max-w-2xl mx-auto medieval-corner">
+                <i class="fas fa-user-tie text-4xl text-white mb-4"></i>
+                <h2 class="font-serif text-3xl text-oro-viejo uppercase tracking-widest mb-2">Código de Vestimenta</h2>
+                <p class="text-lg font-serif text-pergamino font-semibold uppercase tracking-wider mb-4">Elegante /
+                    Etiqueta
+                </p>
+
+                <div class="bg-borgona/40 border border-borgona p-4 rounded-md text-sm md:text-sm text-pergamino/90">
+                    <i class="fas fa-exclamation-circle text-oro-viejo mr-1"></i>
+                    <strong>Nota Importante:</strong> El color <span class="text-oro-viejo font-semibold underline">Azul
+                        en
+                        todas sus tonalidades</span> está reservado exclusivamente para la quinceañera.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN J & K: CONFIRMACIÓN Y CONTACTOS (Estructura limpia) -->
+        <section class="py-20 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <div class="glass-card p-8 rounded-lg border border-oro-viejo max-w-2xl mx-auto medieval-corner">
+                <h2 class="font-serif text-3xl md:text-4xl text-oro-viejo uppercase tracking-widest mb-2">Confirmar
+                    Asistencia</h2>
+                <div class="w-20 h-0.5 bg-oro-viejo mx-auto mb-6"></div>
+
+                <p class="text-sm text-pergamino/70 mb-8">¡Queremos contar contigo! Tu presencia hará que esta
+                    celebración
+                    sea aún más especial. Por favor, confirma tu asistencia a través de WhatsApp.</p>
+
+                <div class="mb-10">
+                    <button onclick="sendRSVP()"
+                        class="inline-flex items-center gap-3 bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-8 py-4 rounded-none border border-emerald-500 shadow-lg text-sm tracking-widest uppercase transition-all duration-300">
+                        <i class="fab fa-whatsapp text-xl"></i> Confirmar Asistencia por WhatsApp
+                    </button>
+                </div>
+
+                <div class="border-t border-oro-viejo/30 pt-8">
+                    <h3 class="font-serif text-xl text-oro-viejo uppercase tracking-widest mb-6">¿Tienes alguna duda?
+                    </h3>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://wa.me/59174810842?text=Hola%20Brenda,%20tengo%20una%20consulta%20sobre%20tus%20XV%20A%C3%B1os"
+                            target="_blank"
+                            class="glass-card px-5 py-3 rounded-none border border-oro-viejo/40 text-sm text-pergamino hover:border-oro-viejo transition-all">
+                            <i class="fab fa-whatsapp text-oro-viejo mr-2"></i> Contactar a Brenda
+                        </a>
+                        <a href="https://wa.me/59174810842?text=Hola,%20tengo%20una%20consulta%20sobre%20los%20XV%20A%C3%B1os%20de%20Brenda"
+                            target="_blank"
+                            class="glass-card px-5 py-3 rounded-none border border-oro-viejo/40 text-sm text-pergamino hover:border-oro-viejo transition-all">
+                            <i class="fab fa-whatsapp text-oro-viejo mr-2"></i> Contactar a los Padres
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
     <!-- FOOTER -->
     <footer class="py-8 text-center text-sm text-pergamino/40 border-t border-oro-viejo/20">
-        <p class="font-serif tracking-widest uppercase">Mis XV Años Brenda · Noche de Leyendas 2026</p>
+        <p class="font-serif tracking-widest uppercase">Mis XV Años · Noche de Leyendas 2026</p>
     </footer>
 
     <!-- AOS JS -->
@@ -484,11 +620,9 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // Variables globales para el invitado
         let currentGuest = "Invitado Especial";
         let currentPasses = "1";
 
-        // Función robusta para decodificar Base64 URL-safe y JSON compatible con el generador
         function fnDecodificarBase64Url(base64Url) {
             try {
                 let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -508,7 +642,6 @@
             }
         }
 
-        // Decodificación y asignación de datos del invitado
         function getQueryParams() {
             const urlParams = new URLSearchParams(window.location.search);
             const encodedData = urlParams.get('i');
@@ -525,7 +658,6 @@
             document.getElementById('guestPasses').textContent = currentPasses;
         }
 
-        // Cuenta Regresiva
         const targetDate = new Date('November 27, 2026 17:30:00').getTime();
 
         function updateCountdown() {
@@ -545,28 +677,10 @@
             }
         }
 
-        // WhatsApp RSVP
         function sendRSVP() {
             const phone = "59174810842";
             const text = encodeURIComponent(`¡Hola! Confirmo mi asistencia a los XV Años de Brenda.\n\n*Invitado:* ${currentGuest}\n*Pases confirmados:* ${currentPasses}`);
             window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
-        }
-
-        // Audio Player Control
-        function toggleMusic() {
-            const audio = document.getElementById('bgMusic');
-            const icon = document.getElementById('musicIconFallback');
-            const text = document.getElementById('musicText');
-
-            if (audio.paused) {
-                audio.play();
-                if (icon) icon.className = "fas fa-pause fa-spin";
-                text.textContent = "Pausa";
-            } else {
-                audio.pause();
-                if (icon) icon.className = "fas fa-compact-disc fa-spin";
-                text.textContent = "Música";
-            }
         }
 
         window.onload = function () {
