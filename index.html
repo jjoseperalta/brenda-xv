@@ -51,7 +51,7 @@
         .bg-seccion-1 {
             /* background-color: #0d0b09; */
             background-image:
-                linear-gradient(to bottom, rgba(27, 38, 59, 0.0), rgba(27, 38, 59, 0.0)),
+                /* linear-gradient(to bottom, rgba(27, 38, 59, 0.3), rgba(27, 38, 59, 0.95)), */
                 url('images/background-chimuelo.jpg');
             background-position: center center;
             background-repeat: no-repeat;
@@ -62,7 +62,7 @@
         .bg-seccion-2 {
             /* background-color: #0d0b09; */
             background-image:
-                linear-gradient(to bottom, rgba(27, 38, 59, 0.0), rgba(27, 38, 59, 0.0)),
+                /* linear-gradient(to top, rgba(27, 38, 59, 0.3), rgba(27, 38, 59, 0.95)), */
                 url('images/background-isla.jpg');
             background-position: center center;
             background-repeat: no-repeat;
@@ -73,7 +73,7 @@
         .bg-seccion-3 {
             /* background-color: #0d0b09; */
             background-image:
-                linear-gradient(to bottom, rgba(27, 38, 59, 0.0), rgba(27, 38, 59, 0.0)),
+                /* linear-gradient(to bottom, rgba(27, 38, 59, 0.0), rgba(27, 38, 59, 0.0)), */
                 url('images/background-nocturna.jpg');
             background-position: center center;
             background-repeat: no-repeat;
@@ -84,7 +84,7 @@
         .bg-seccion-4 {
             /* background-color: #0d0b09; */
             background-image:
-                linear-gradient(to bottom, rgba(27, 38, 59, 0.0), rgba(27, 38, 59, 0.0)),
+                /* linear-gradient(to bottom, rgba(27, 38, 59, 0.0), rgba(27, 38, 59, 0.0)), */
                 url('images/background-paper.jpg');
             background-position: center center;
             background-repeat: no-repeat;
@@ -304,11 +304,20 @@
 
         <!-- Reproductor de Música Flotante -->
         <div class="fixed top-5 right-5 z-50">
-            <button id="musicToggle" onclick="toggleMusic()"
-                class="flex items-center gap-2 bg-azul-real/90 border border-oro-viejo text-oro-viejo px-4 py-2 rounded-full shadow-xl backdrop-blur-md hover:bg-oro-viejo hover:text-azul-real transition-all duration-300 text-sm tracking-widest uppercase font-semibold cursor-pointer">
-                <i id="musicIconFallback" class="fas fa-compact-disc fa-spin hidden"></i>
-                <span id="musicText">Música</span>
-            </button>
+            <div class="fixed top-5 right-5 z-50 flex items-center gap-3">
+                <!-- Etiqueta flotante llamativa -->
+                <div
+                    class="bg-pergamino text-azul-real text-xs font-serif italic px-3 py-1.5 rounded-lg shadow-md border border-oro-viejo animate-bounce hidden md:block">
+                    🎵 ¡Activa el soundtrack!
+                </div>
+
+                <!-- Botón de música -->
+                <button id="musicToggle" onclick="toggleMusic()"
+                    class="flex items-center gap-2 bg-borgona/90 border border-oro-viejo text-oro-viejo px-5 py-2.5 rounded-full shadow-xl hover:bg-oro-viejo hover:text-azul-real transition-all duration-300 text-sm tracking-widest uppercase font-semibold cursor-pointer">
+                    <i id="musicIconFallback" class="fas fa-compact-disc"></i>
+                    <span id="musicText">Música</span>
+                </button>
+            </div>
             <audio id="bgMusic" preload="auto">
                 <source src="audio/soundtrack.mp3" type="audio/mpeg">
             </audio>
@@ -331,6 +340,14 @@
                     <div class="w-16 h-0.5 bg-oro-viejo mx-auto my-6"></div>
                 </div>
             </section>
+        </div>
+
+        <!-- === DIVISOR PNG FLOTANTE === -->
+        <div class="relative h-0 z-20 flex justify-center items-center">
+            <!-- El margen negativo (ej. -mt-8) sube la imagen la mitad de su alto para que quede centrada en el corte -->
+            <img src="images/divisor-medieval-2.png" alt="Divisor"
+                class="w-100% md:w-100% object-contain -mt-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+                onerror="this.style.display='none'">
         </div>
 
         <!-- -------------------------------------------------- -->
@@ -456,6 +473,12 @@
             </section>
         </div>
 
+        <div class="relative h-0 z-20 flex justify-center items-center">
+            <!-- El margen negativo (ej. -mt-8) sube la imagen la mitad de su alto para que quede centrada en el corte -->
+            <img src="images/divisor-medieval-2.png" alt="Divisor"
+                class="w-100% md:w-100% object-contain -mt-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+                onerror="this.style.display='none'">
+        </div>
 
         <!-- -------------------------------------------------- -->
         <!-- SUB-BLOQUE 3: bloque-seccion-3                     -->
@@ -496,8 +519,8 @@
 
                     <div
                         class="inline-block bg-white/50 backdrop-blur-sm border border-oro-viejo/40 px-4 py-2 rounded-lg shadow-sm mb-6">
-                        <p class="font-serif text-xl font-bold text-azul-real">Salón de Eventos NOTREDAME</p>
-                        <p class="text-sm text-azul-real font-medium">Av. D’Orbigny esq. Cobija</p>
+                        <p class="font-serif text-xl font-bold text-azul-real">Salón de Eventos NOTRE DAME</p>
+                        <p class="text-sm text-azul-real font-medium">Av. D’Orbigny esq. Cobija #2482</p>
                     </div>
 
                     <a href="https://maps.app.goo.gl/4WBKfRm43toPQa6D9" target="_blank"
@@ -517,6 +540,12 @@
 
         </div>
 
+        <div class="relative h-0 z-20 flex justify-center items-center">
+            <!-- El margen negativo (ej. -mt-8) sube la imagen la mitad de su alto para que quede centrada en el corte -->
+            <img src="images/divisor-medieval-2.png" alt="Divisor"
+                class="w-100% md:w-100% object-contain -mt-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+                onerror="this.style.display='none'">
+        </div>
         <!-- -------------------------------------------------- -->
         <!-- SUB-BLOQUE 4: bloque-seccion-4                     -->
         <!-- -------------------------------------------------- -->
@@ -542,8 +571,9 @@
                     <div class="relative border-l-2 border-oro-viejo/40 ml-12 md:ml-32 space-y-12 mb-8">
                         <div class="relative pl-16 md:pl-24">
                             <div
-                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
-                                <img src="images/casco.png" alt="Recepción" class="w-full h-full object-contain"
+                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-pergamino/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                                <img src="images/casco.png" alt="Recepción"
+                                    class="w-full h-full object-contain mix-blend-multiply"
                                     onerror="this.style.display='none'">
                             </div>
                             <span class="text-xl font-semibold text-oro-viejo tracking-widest block mb-1">18:00
@@ -554,8 +584,9 @@
 
                         <div class="relative pl-16 md:pl-24">
                             <div
-                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
-                                <img src="images/escudo.png" alt="Acto Central" class="w-full h-full object-contain"
+                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-pergamino/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                                <img src="images/escudo.png" alt="Acto Central"
+                                    class="w-full h-full object-contain mix-blend-multiply"
                                     onerror="this.style.display='none'">
                             </div>
                             <span class="text-xl font-semibold text-oro-viejo tracking-widest block mb-1">20:00
@@ -567,8 +598,9 @@
 
                         <div class="relative pl-16 md:pl-24">
                             <div
-                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
-                                <img src="images/oveja.png" alt="Sorpresa" class="w-full h-full object-contain"
+                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-pergamino/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                                <img src="images/oveja.png" alt="Sorpresa"
+                                    class="w-full h-full object-contain mix-blend-multiply"
                                     onerror="this.style.display='none'">
                             </div>
                             <span class="text-xl font-semibold text-oro-viejo tracking-widest block mb-1">23:00
@@ -579,8 +611,9 @@
 
                         <div class="relative pl-16 md:pl-24">
                             <div
-                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
-                                <img src="images/pescado.png" alt="Sorpresa" class="w-full h-full object-contain"
+                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-pergamino/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                                <img src="images/pescado.png" alt="Sorpresa"
+                                    class="w-full h-full object-contain mix-blend-multiply"
                                     onerror="this.style.display='none'">
                             </div>
                             <span class="text-xl font-semibold text-oro-viejo tracking-widest block mb-1">00:00
@@ -592,8 +625,9 @@
 
                         <div class="relative pl-16 md:pl-24">
                             <div
-                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-azul-real/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
-                                <img src="images/espada.png" alt="Fiesta" class="w-full h-full object-contain"
+                                class="absolute -left-[48px] top-0.5 w-24 h-24 rounded-full bg-pergamino/50 border-2 border-oro-viejo flex items-center justify-center shadow-md overflow-hidden p-2">
+                                <img src="images/espada.png" alt="Fiesta"
+                                    class="w-full h-full object-contain mix-blend-multiply"
                                     onerror="this.style.display='none'">
                             </div>
                             <span class="text-xl font-semibold text-oro-viejo tracking-widest block mb-1">2:00
@@ -607,6 +641,13 @@
         </div>
 
 
+        <div class="relative h-0 z-20 flex justify-center items-center">
+            <!-- El margen negativo (ej. -mt-8) sube la imagen la mitad de su alto para que quede centrada en el corte -->
+            <img src="images/divisor-medieval-2.png" alt="Divisor"
+                class="w-100% md:w-100% object-contain -mt-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+                onerror="this.style.display='none'">
+        </div>
+
         <!-- -------------------------------------------------- -->
         <!-- SUB-BLOQUE 5: bloque-seccion-5                     -->
         <!-- -------------------------------------------------- -->
@@ -615,13 +656,16 @@
             <section class="py-16 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
                 <div class="bg-azul-real/50 p-8 md:p-12 rounded-lg shadow-2xl relative medieval-corner">
                     <!-- Insignia / Escudo / Casco / Hacha en la esquina superior izquierda -->
-                    <img src="images/hacha_.png" alt="Insignia" class="card-badge-top-left object-contain"
-                        onerror="this.style.display='none';">
+                    <!-- <img src="images/hacha_.png" alt="Insignia" class="card-badge-top-left object-contain"
+                        onerror="this.style.display='none';"> -->
                     <img src="images/regalo.gif" alt="Regalo" class="w-24 h-24 mx-auto mb-4"
                         onerror="this.style.display='none';">
-                    <h2 class="font-serif text-3xl text-white font-bold uppercase tracking-widest mb-3 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Sugerencias de Regalo
+                    <h2
+                        class="font-serif text-3xl text-white font-bold uppercase tracking-widest mb-3 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+                        Sugerencias de Regalo
                     </h2>
-                    <p class="text-lg font-serif text-white font-semibold italic uppercase tracking-wider mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+                    <p
+                        class="text-lg font-serif text-white font-semibold italic uppercase tracking-wider mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
                         Más allá de cualquier detalle, lo que más valoro es compartir este día contigo. Si deseas
                         hacerme un
                         presente en físico, será un hermoso recuerdo que guardaré de mis quince años.
@@ -629,8 +673,11 @@
 
                     <img src="images/sobre.gif" alt="Sobre" class="w-24 h-24 mx-auto mb-4"
                         onerror="this.style.display='none';">
-                    <h2 class="font-serif text-3xl text-white font-bold uppercase tracking-widest mb-3 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Lluvia de Sobres</h2>
-                    <p class="text-lg font-serif text-white font-semibold italic uppercase tracking-wider mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+                    <h2
+                        class="font-serif text-3xl text-white font-bold uppercase tracking-widest mb-3 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+                        Lluvia de Sobres</h2>
+                    <p
+                        class="text-lg font-serif text-white font-semibold italic uppercase tracking-wider mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
                         La lluvia de sobres es una tradición que simboliza buenos deseos y bendiciones. Si deseas
                         participar, puedes hacerlo a través de un sobre el día del evento.
                     </p>
@@ -638,15 +685,18 @@
                     <img src="images/qr.gif" alt="Sobre" class="w-24 h-24 mx-auto mb-4"
                         onerror="this.style.display='none';">
 
-                    <h2 class="font-serif text-3xl text-white font-bold uppercase tracking-widest mb-3 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Transferencia QR</h2>
-                    <p class="text-lg font-serif text-white font-semibold italic uppercase tracking-wider mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+                    <h2
+                        class="font-serif text-3xl text-white font-bold uppercase tracking-widest mb-3 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+                        Transferencia QR</h2>
+                    <p
+                        class="text-lg font-serif text-white font-semibold italic uppercase tracking-wider mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
                         Si te resulta más cómodo, puedes realizar tu contribución mediante una transferencia directa
                         escaneando el código QR que se encuentra a continuación.
                     </p>
 
-                    <div class="bg-azul-real/90 border border-oro-viejo/40 p-4 rounded-lg inline-block">
-                        <div class="bg-white p-3 rounded-md inline-block mb-3">
-                            <img src="images/qr.jpeg" alt="Código QR Transferencia" class="w-36 h-36 mx-auto">
+                    <div class="bg-azul-real/90 border border-oro-viejo/40 p-3 rounded-lg inline-block">
+                        <div class="bg-white p-0 rounded-md inline-block mb-3">
+                            <img src="images/qr-brenda.jpg" alt="Código QR Transferencia" class="w-36 h-36 mx-auto">
                         </div>
                     </div>
                 </div>
@@ -654,6 +704,12 @@
 
         </div>
 
+        <div class="relative h-0 z-20 flex justify-center items-center">
+            <!-- El margen negativo (ej. -mt-8) sube la imagen la mitad de su alto para que quede centrada en el corte -->
+            <img src="images/divisor-medieval-2.png" alt="Divisor"
+                class="w-100% md:w-100% object-contain -mt-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+                onerror="this.style.display='none'">
+        </div>
 
         <!-- -------------------------------------------------- -->
         <!-- SUB-BLOQUE 6: bloque-seccion-6                     -->
@@ -685,8 +741,14 @@
                 </div>
             </section>
 
-            </div>
+        </div>
 
+        <div class="relative h-0 z-20 flex justify-center items-center">
+            <!-- El margen negativo (ej. -mt-8) sube la imagen la mitad de su alto para que quede centrada en el corte -->
+            <img src="images/divisor-medieval-2.png" alt="Divisor"
+                class="w-100% md:w-100% object-contain -mt-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]"
+                onerror="this.style.display='none'">
+        </div>
 
         <!-- -------------------------------------------------- -->
         <!-- SUB-BLOQUE 7: bloque-seccion-7                     -->
@@ -737,8 +799,8 @@
                                     <label class="block font-serif text-lg md:text-xl font-semibold mb-2">
                                         Ingresa tu nombre y apellido <span class="text-borgona">*</span>
                                     </label>
-                                    <p class="text-xs text-gris-pizarra mb-3">Este campo viene precargado con tu pase
-                                        exclusivo.</p>
+                                    <!-- <p class="text-xs text-gris-pizarra mb-3">Este campo viene precargado con tu pase
+                                        exclusivo.</p> -->
                                     <input type="text" id="guestName" required readonly
                                         class="w-full bg-gray-100 border border-gray-300 text-azul-real font-semibold px-4 py-3 rounded-xl focus:outline-none text-base font-sans cursor-not-allowed">
                                 </div>
@@ -773,19 +835,20 @@
                     </div>
 
                     <div class="border-t border-oro-viejo/30 pt-8">
-                        <h3 class="font-serif text-xl text-azul-real font-semibold uppercase tracking-widest mb-6">¿Tienes alguna
+                        <h3 class="font-serif text-xl text-azul-real font-semibold uppercase tracking-widest mb-6">
+                            ¿Tienes alguna
                             duda?</h3>
                         <div class="flex flex-wrap justify-center gap-4 mb-8">
-                            <a href="https://wa.me/59174810842?text=Hola%20Brenda,%20tengo%20una%20consulta%20sobre%20tus%20XV%20A%C3%B1os"
+                            <a href="https://wa.me/59171767001?text=Hola%20Brenda,%20tengo%20una%20consulta%20sobre%20tus%20XV%20A%C3%B1os"
                                 target="_blank"
                                 class="inline-flex items-center gap-3 bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-8 py-4 rounded-none border border-emerald-500 shadow-lg text-sm tracking-widest uppercase transition-all duration-300">
                                 <i class="fab fa-whatsapp text-xl"></i> Contacto
                             </a>
-                            <a href="https://wa.me/59174810842?text=Hola,%20tengo%20una%20consulta%20sobre%20los%20XV%20A%C3%B1os"
+                            <!-- <a href="https://wa.me/59174810842?text=Hola,%20tengo%20una%20consulta%20sobre%20los%20XV%20A%C3%B1os"
                                 target="_blank"
                                 class="inline-flex items-center gap-3 bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-8 py-4 rounded-none border border-emerald-500 shadow-lg text-sm tracking-widest uppercase transition-all duration-300">
                                 <i class="fab fa-whatsapp text-xl"></i> Contacto
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -811,7 +874,7 @@
         const targetDate = new Date('November 27, 2026 18:00:00').getTime();
         const startTime = 0;
 
-        function fnDecodificarBase64Url(base64Url) {
+        function decodificarBase64Url(base64Url) {
             try {
                 let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
                 while (base64.length % 4) {
@@ -835,7 +898,7 @@
             const encodedData = urlParams.get('i');
 
             if (encodedData) {
-                const datos = fnDecodificarBase64Url(encodedData);
+                const datos = decodificarBase64Url(encodedData);
                 if (datos) {
                     currentGuestId = datos.id || "";
                     currentGuest = datos.n || datos.nombre || "Invitado Especial";
@@ -854,6 +917,8 @@
                 }
             }
             if (elGuestPasses) elGuestPasses.textContent = currentPasses;
+
+            console.log({ currentGuestId, currentGuest, currentPasses });
         }
 
         // Modificado para ocultar el bloque de portada y mostrar el bloque de invitación general
@@ -908,6 +973,8 @@
                     asistencia: asistenciaSeleccionada,
                     acompanante: acompanante
                 };
+
+                console.log({ payload });
 
                 fetch(SCRIPT_URL, {
                     method: 'POST',
@@ -1028,6 +1095,80 @@
             updateCountdown();
             // revelarInvitacion();
         };
+
+        let datosInvitadoGlobal = {};
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const codigo = params.get('i');
+
+            if (!codigo) {
+                console.warn("No se encontró el parámetro 'i' en la URL.");
+                return;
+            }
+
+            try {
+                // 1. decodificarBase64Url YA DEVUELVE EL OBJETO PARSEADO CORRECTAMENTE
+                datosInvitadoGlobal = decodificarBase64Url(codigo);
+                
+                if (!datosInvitadoGlobal) {
+                    throw new Error("No se pudo decodificar el payload de la URL.");
+                }
+
+                // Rellenar automáticamente el campo de nombre
+                const inputNombre = document.getElementById('guestName');
+                if (inputNombre) {
+                    inputNombre.value = datosInvitadoGlobal.n || datosInvitadoGlobal.nombre || "";
+                }
+
+                const invitadoId = datosInvitadoGlobal.id;
+                if (!invitadoId) return;
+
+                // 2. CONSULTAR A GOOGLE SHEETS SI YA RESPONDIÓ (Protegido contra CORS local)
+                try {
+                    const response = await fetch(`${SCRIPT_URL}?action=verificar_rsvp&id=${invitadoId}`);
+                    const textResponse = await response.text();
+                    
+                    let resultado;
+                    try {
+                        resultado = JSON.parse(textResponse);
+                    } catch (err) {
+                        resultado = { estado: "Pendiente" };
+                    }
+
+                    // Si el estado ya fue confirmado o declinado
+                    if (resultado.estado && resultado.estado !== "Pendiente") {
+                        bloquearFormularioConMensaje(datosInvitadoGlobal.n || datosInvitadoGlobal.nombre, resultado.estado, resultado.asistencia);
+                    }
+                } catch (corsErr) {
+                    console.warn("Aviso: Consulta GET bloqueada por políticas CORS locales del navegador (normal en entorno de desarrollo 127.0.0.1). El formulario operará con normalidad.");
+                }
+
+            } catch (e) {
+                console.error("Error al procesar la invitación:", e);
+            }
+        });
+
+        // Función para ocultar los inputs y mostrar el pergamino de estado registrado
+        function bloquearFormularioConMensaje(nombre, estado, acompanante) {
+            const form = document.getElementById('formConfirmacion');
+            if (form) form.style.display = 'none';
+
+            const mensajeEstado = document.getElementById('mensajeEstado');
+            if (mensajeEstado) {
+                mensajeEstado.innerHTML = `
+                <i class="fas fa-check-circle text-oro-viejo text-3xl mb-2"></i>
+                <h3 class="font-serif text-xl text-oro-viejo font-bold mb-1">¡Respuesta Registrada!</h3>
+                <p class="text-sm text-pergamino/90 mb-2">
+                    Gracias <strong>${nombre}</strong>, hemos registrado tu respuesta.
+                </p>
+                <p class="text-xs text-pergamino/70 italic mt-3 border-t border-oro-viejo/30 pt-2">
+                    Si necesitas realizar alguna modificación, por favor comunícate directamente con la anfitriona.
+                </p>
+            `;
+                mensajeEstado.classList.remove('hidden');
+            }
+        }
     </script>
 </body>
 

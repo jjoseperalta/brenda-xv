@@ -63,7 +63,7 @@
             <div>
                 <label class="block text-xs uppercase tracking-widest text-oro-viejo font-semibold mb-2">URL Base
                 </label>
-                <input type="url" id="baseUrlInput" required placeholder="https://tu-usuario.github.io/invitacion-xv/"
+                <input type="url" id="baseUrlInput" required readonly placeholder="https://tu-usuario.github.io/invitacion-xv/"
                     class="w-full bg-azul-real border border-oro-viejo/60 rounded px-4 py-3 text-pergamino placeholder-pergamino/40 focus:outline-none focus:border-oro-viejo text-sm">
             </div>
 
@@ -89,7 +89,7 @@
                     </button>
                     <a id="whatsappBtn" href="#" target="_blank"
                         class="flex-1 bg-emerald-700 hover:bg-emerald-600 text-white font-semibold py-2.5 text-xs uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2">
-                        <i class="fab fa-whatsapp"></i> Probar en WhatsApp
+                        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
                     </a>
                 </div>
             </div>
@@ -104,11 +104,26 @@
     </div>
 
     <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxkhYqxJ3cetsy_udFaIxIbi6zJkojI7wgdhhg7TEBWeiDrBfcY3MyeRxTGTzA0Czcg7w/exec";
+
         // Autodetección automática al cargar la página
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', async () => {
             if (location.protocol === 'http:' || location.protocol === 'https:') {
                 const base = new URL('./', location.href);
                 document.getElementById('baseUrlInput').value = base.href;
+            }
+
+            // Consultar a Google Sheets el siguiente ID
+            try {
+                const res = await fetch(`${SCRIPT_URL}?action=obtener_siguiente_id`);
+                const data = await res.json();
+                if (data.nextId) {
+                    console.log("Siguiente ID sugerido:", data.nextId);
+                    window.currentIdSugerido = data.nextId;
+                }
+            } catch (err) {
+                console.error("No se pudo obtener el ID automático:", err);
+                window.currentIdSugerido = "INV-001"; // Fallback por seguridad
             }
         });
 
@@ -119,12 +134,15 @@
             return btoa(binario).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
         }
 
-        function generateLink(e) {
+        async function generateLink(e) {
             e.preventDefault();
 
             const name = document.getElementById('guestNameInput').value.trim();
             const passes = Number(document.getElementById('guestPassesInput').value);
             let baseUrlStr = document.getElementById('baseUrlInput').value.trim();
+
+            // Usar el ID que trajimos de Google Sheets (o generar uno temporal si falló)
+            const assignedId = window.currentIdSugerido || "INV-001";
 
             let base;
             try {
@@ -141,8 +159,8 @@
                 base.pathname += '/';
             }
 
-            // Codificar en Base64 URL-safe con estructura JSON { n, p } compatible con la invitación
-            const codigo = codificarBase64Url({ n: name, p: passes });
+            // Si deseas que la URL incluya también el ID { id, n, p }
+            const codigo = codificarBase64Url({ id: assignedId, n: name, p: passes });
             const urlInvitacion = new URL('index.html', base);
             urlInvitacion.searchParams.set('i', codigo);
 
@@ -154,6 +172,38 @@
             document.getElementById('whatsappBtn').href = `https://wa.me/?text=${message}`;
 
             document.getElementById('resultBox').classList.remove('hidden');
+
+            // --- ENVIAR DATOS A GOOGLE SHEETS ---
+            try {
+                const payload = {
+                    action: "registrar_invitado",
+                    id: assignedId,
+                    nombre: name,
+                    pases: passes,
+                    url: finalUrl
+                };
+
+                // Usamos mode: 'no-cors' para evitar el bloqueo de Google Apps Script en POST
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                // 1. Limpiar los inputs para el siguiente invitado
+                document.getElementById('guestNameInput').value = '';
+                document.getElementById('guestPassesInput').value = '2'; // Valor por defecto opcional
+                document.getElementById('guestNameInput').focus(); // Pone el cursor listo para escribir el nuevo nombre
+
+                // 2. Incrementar automáticamente el ID para que el próximo sea el siguiente (ej. INV-004)
+                let numActual = parseInt(assignedId.replace("INV-", "")) + 1;
+                window.currentIdSugerido = "INV-" + String(numActual).padStart(3, '0');
+                console.log("Siguiente ID preparado:", window.currentIdSugerido);
+
+            } catch (err) {
+                console.error("Error al registrar en Google Sheets:", err);
+            }
         }
 
         function copyLink() {
