@@ -1122,11 +1122,12 @@
                 }
 
                 const invitadoId = datosInvitadoGlobal.id;
+                const nombreInvitado = encodeURIComponent(datosInvitadoGlobal.n || datosInvitadoGlobal.nombre || "");
                 if (!invitadoId) return;
 
                 // 2. CONSULTAR A GOOGLE SHEETS SI YA RESPONDIÓ (Protegido contra CORS local)
                 try {
-                    const response = await fetch(`${SCRIPT_URL}?action=verificar_rsvp&id=${invitadoId}`);
+                    const response = await fetch(`${SCRIPT_URL}?action=verificar_rsvp&id=${invitadoId}&nombre=${nombreInvitado}`);
                     const textResponse = await response.text();
                     
                     let resultado;
